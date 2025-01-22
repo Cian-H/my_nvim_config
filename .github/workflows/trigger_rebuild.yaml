@@ -18,4 +18,4 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             /repos/Cian-H/my_nvim/dispatches \
-             -f "event_type=on-demand-test" -F "client_payload[unit]=false" -F "client_payload[integration]=true"
+             -f "event_type=rebuild-container" -F "client_payload[unit]=false" -F "client_payload[integration]=true"

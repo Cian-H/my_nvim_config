@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Trigger rebuild
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PUBLIC_ACTION_TRIGGER_TOKEN }}
         run: |
           gh api \
             --method POST \

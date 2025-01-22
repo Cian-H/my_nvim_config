@@ -9,52 +9,13 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
-      - name: Test repository access
-        env:
-          GH_TOKEN: ${{ secrets.PUBLIC_ACTION_TRIGGER_TOKEN }}
+      - name: Trigger rebuild
         run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "Error: PUBLIC_ACTION_TRIGGER_TOKEN secret is not set"
-            exit 1
-          fi
-          
-          echo "Testing repository access..."
-          repo_response=$(curl -s -o /dev/null -w "%{http_code}" \
+          curl -L \
+            -X POST \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/Cian-H/my_nvim)
-            
-          echo "Repository access status code: $repo_response"
-          
-          if [ "$repo_response" -eq 200 ]; then
-            echo "Repository is accessible, attempting dispatch..."
-            dispatch_response=$(curl -s -o /dev/null -w "%{http_code}" \
-              -X POST \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: Bearer $GH_TOKEN" \
-              -H "Content-Type: application/json" \
-              -H "X-GitHub-Api-Version: 2022-11-28" \
-              https://api.github.com/repos/Cian-H/my_nvim/dispatches \
-              -d '{"event_type":"rebuild-container"}')
-            
-            echo "Dispatch status code: $dispatch_response"
-            
-            if [ "$dispatch_response" -ne 204 ]; then
-              # Get the error message
-              error_msg=$(curl -s \
-                -X POST \
-                -H "Accept: application/vnd.github+json" \
-                -H "Authorization: Bearer $GH_TOKEN" \
-                -H "Content-Type: application/json" \
-                -H "X-GitHub-Api-Version: 2022-11-28" \
-                https://api.github.com/repos/Cian-H/my_nvim/dispatches \
-                -d '{"event_type":"rebuild-container"}')
-              
-              echo "Error response: $error_msg"
-              exit 1
-            fi
-          else
-            echo "Cannot access repository"
-            exit 1
-          fi
+            https://api.github.com/repos/Cian-H/my_nvim/dispatches \
+            -d '{"event_type":"rebuild-container"}'

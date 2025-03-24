@@ -17,3 +17,11 @@ vim.keymap.set("n", "<A-q>", ":q<CR>", { noremap = true, silent = true })
 -- Non standard key mappings are here
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "[D]iagnostics" })
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "[F]ormat" })
+vim.keymap.set(
+    "n",
+    "<leader>ci",
+    function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end,
+    { desc = "[I]nlay Hints" }
+)

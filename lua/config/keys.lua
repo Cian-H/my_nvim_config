@@ -11,17 +11,6 @@ return {
         { "<leader>o", group = "[O]verseer" },
         { "<leader>h", group = "[H]arpoon" },
         { "<leader>x", group = "[X] Trouble" },
-        { "<leader>|", group = "[|] Copilot" },
-    },
-    copilot = {
-        { "<leader>||", "<cmd>Copilot toggle<cr>", desc = "[||] Toggle Copilot", mode = "n" },
-        {
-            "<leader>|t",
-            "<cmd>Copilot suggestion toggle_auto_trigger<cr>",
-            desc = "[|] [T]oggle inline suggestions",
-            mode = "n",
-        },
-        { "<leader>|p", "<cmd>Copilot panel<cr>", desc = "[|] [P]anel", mode = "n" },
     },
     harpoon = {
         {

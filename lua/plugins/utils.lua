@@ -237,30 +237,6 @@ return { -- General programming utilities go here
             "nvim-treesitter/nvim-treesitter",
         },
     },
-    -- Github copilot, cos its pretty handy
-    {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require("copilot").setup({
-                panel = {
-                    auto_refresh = true,
-                    layout = {
-                        position = "right",
-                    },
-                },
-                suggestion = {
-                    keymap = {
-                        accept = "<M-CR>",
-                        accept_word = "<M-w>",
-                        accept_line = "<M-f>",
-                    },
-                },
-            })
-        end,
-        keys = require("config.keys").copilot,
-    },
     -- Rust tools like inlay hints are absolutely essential
     { "simrat39/rust-tools.nvim", ft = "rust" },
 }

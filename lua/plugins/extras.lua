@@ -20,7 +20,6 @@ return { -- Non programming quality of life utilities go here
                 },
             },
             completion = {
-                nvim_cmp = true,
                 min_chars = 2,
             },
         },

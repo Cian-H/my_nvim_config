@@ -12,6 +12,70 @@ return {
         { "<leader>h", group = "[H]arpoon" },
         { "<leader>x", group = "[X] Trouble" },
     },
+    gitsigns = {
+        {
+            "<leader>gs",
+            function()
+                require("gitsigns").stage_hunk()
+            end,
+            desc = "[G]it [S]tage Hunk",
+            mode = { "n", "v" },
+        },
+        {
+            "<leader>gr",
+            function()
+                require("gitsigns").reset_hunk()
+            end,
+            desc = "[G]it [R]eset Hunk",
+            mode = { "n", "v" },
+        },
+        {
+            "<leader>gp",
+            function()
+                require("gitsigns").preview_hunk()
+            end,
+            desc = "[G]it [P]review Hunk",
+            mode = "n",
+        },
+        {
+            "<leader>gb",
+            function()
+                package.loaded.gitsigns.blame_line()
+            end,
+            desc = "[G]it [B]lame Line",
+            mode = "n",
+        },
+        {
+            "]c",
+            function()
+                if vim.wo.diff then
+                    return "]c"
+                end
+                vim.schedule(function()
+                    require("gitsigns").next_hunk()
+                end)
+                return "<Ignore>"
+            end,
+            desc = "Next Hunk",
+            mode = "n",
+            expr = true,
+        },
+        {
+            "[c",
+            function()
+                if vim.wo.diff then
+                    return "[c"
+                end
+                vim.schedule(function()
+                    require("gitsigns").prev_hunk()
+                end)
+                return "<Ignore>"
+            end,
+            desc = "Previous Hunk",
+            mode = "n",
+            expr = true,
+        },
+    },
     harpoon = {
         {
             "<leader>ha",
@@ -151,10 +215,10 @@ return {
         { "<leader>te", vim.cmd.Oil, desc = "[T]ree [E]dit", mode = "n" },
     },
     overseer = {
-        { "<leader>ob", vim.cmd.OverseerBuild, desc = "[O]verseer [B]uild", mode = "n" },
+        { "<leader>ob", vim.cmd.OverseerBuild,  desc = "[O]verseer [B]uild",       mode = "n" },
         { "<leader>oc", vim.cmd.OverseerRunCmd, desc = "[O]verseer Run [C]ommand", mode = "n" },
-        { "<leader>or", vim.cmd.OverseerRun, desc = "[O]verseer [R]un", mode = "n" },
-        { "<leader>ot", vim.cmd.OverseerToggle, desc = "[O]verseer [T]oggle", mode = "n" },
+        { "<leader>or", vim.cmd.OverseerRun,    desc = "[O]verseer [R]un",         mode = "n" },
+        { "<leader>ot", vim.cmd.OverseerToggle, desc = "[O]verseer [T]oggle",      mode = "n" },
     },
     precognition = {
         {
@@ -298,7 +362,7 @@ return {
             "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
             desc = "Todo/Fix/Fixme",
         },
-        { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+        { "<leader>st", "<cmd>TodoTelescope<cr>",       desc = "Todo" },
         {
             "<leader>sT",
             "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
@@ -312,14 +376,14 @@ return {
             "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
             desc = "Buffer Diagnostics",
         },
-        { "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols" },
+        { "<leader>cs", "<cmd>Trouble symbols toggle<cr>",     desc = "Symbols" },
         {
             "<leader>cS",
             "<cmd>Trouble lsp toggle<cr>",
             desc = "LSP references/definitions/... (Trouble)",
         },
         { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List" },
-        { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List" },
+        { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",  desc = "Quickfix List" },
         {
             "[q",
             function()

@@ -1,5 +1,5 @@
 return { -- UI components and other visual elements are declared here
-    { -- Theme
+    {    -- Theme
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
@@ -58,26 +58,6 @@ return { -- UI components and other visual elements are declared here
         version = "2.*",
         config = function()
             require("window-picker").setup()
-        end,
-    },
-    { -- Adds git related signs to the gutter, as well as utilities for managing changes
-        "mhinz/vim-signify",
-        event = "VimEnter",
-        config = function()
-            -- defer config for 5ms. Old vim plugins can be janky in neovim
-            vim.defer_fn(function()
-                vim.g.signify_sign_show_count = 0
-                vim.g.signify_sign_add = "┃"
-                vim.g.signify_sign_change = "┃"
-                vim.g.signify_sign_delete = "_"
-                vim.g.signify_sign_delete_first_line = "‾"
-                vim.g.signify_sign_change_delete = "~"
-                vim.cmd.highlight({ "SignifySignAdd", "guifg=#449dab" })
-                vim.cmd.highlight({ "SignifySignChange", "guifg=#6183bb" })
-                vim.cmd.highlight({ "SignifySignDelete", "guifg=#914c54" })
-                vim.cmd.highlight({ "link", "SignifySignDeleteFirstLine", "SignifySignDelete" })
-                vim.cmd.highlight({ "link", "SignifySignChangeDelete", "SignifySignChange" })
-            end, 5)
         end,
     },
     -- Modular, configurable status bar

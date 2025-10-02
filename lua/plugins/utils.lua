@@ -1,6 +1,6 @@
 return { -- General programming utilities go here
     -- Tools for configuration and plugin development
-    { "folke/neoconf.nvim", cmd = "Neoconf" },
+    { "folke/neoconf.nvim",   cmd = "Neoconf" },
     {
         "folke/neodev.nvim",
         opts = {
@@ -8,7 +8,7 @@ return { -- General programming utilities go here
                 if
                     root_dir:find(
                         os.getenv("XDG_CONFIG_HOME")
-                            .. "/nix/home-manager/core/dotfiles/dot_config/nvim/",
+                        .. "/nix/home-manager/core/dotfiles/dot_config/nvim/",
                         1,
                         true
                     ) == 1
@@ -40,9 +40,24 @@ return { -- General programming utilities go here
         dependencies = { "nvim-lua/plenary.nvim" },
         keys = require("config.keys").todo_comments,
     },
-    "tpope/vim-fugitive", -- Also want to add fugitive, since it's apparently a great git plugin
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "VimEnter",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("gitsigns").setup({
+                signs = {
+                    add = { text = "┃" },
+                    change = { text = "┃" },
+                    delete = { text = "_" },
+                    topdelete = { text = "‾" },
+                    changedelete = { text = "~" },
+                },
+            })
+        end,
+    },
     "jlfwong/vim-mercenary", -- Mercenary is the mercurial equivalent of fugitive
-    { -- Oil is a very nice buffer-based filetree editor
+    {                        -- Oil is a very nice buffer-based filetree editor
         "stevearc/oil.nvim",
         event = "VeryLazy",
         opts = {},

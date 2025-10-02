@@ -42,7 +42,17 @@ return {
             })
 
             require("mason").setup()
-            require("mason-lspconfig").setup()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "lua_ls",
+                    "uv",
+                    "ruff",
+                    "pylsp",
+                    "alejandra",
+                    "nil",
+                    "taplo",
+                },
+            })
 
             vim.lsp.config("lua_ls", {
                 settings = {

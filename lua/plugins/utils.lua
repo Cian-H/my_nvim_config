@@ -56,8 +56,7 @@ return { -- General programming utilities go here
             })
         end,
     },
-    "jlfwong/vim-mercenary", -- Mercenary is the mercurial equivalent of fugitive
-    {                        -- Oil is a very nice buffer-based filetree editor
+    { -- Oil is a very nice buffer-based filetree editor
         "stevearc/oil.nvim",
         event = "VeryLazy",
         opts = {},

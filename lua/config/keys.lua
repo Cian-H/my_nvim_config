@@ -6,11 +6,11 @@ return {
         { "<leader>g", group = "[G]enerate", icon="󰈏" },
         { "<leader>r", group = "[R]ename", icon="󰑕" },
         { "<leader>w", group = "[W]orkspace", icon="" },
-        { "<leader>t", group = "[T]ree", "󱏒" },
+        { "<leader>t", group = "[T]ree", icon="󱏒" },
         { "<leader>l", group = "[L]azyGit", icon="󰒲" },
         { "<leader>o", group = "[O]verseer", icon="󰈈" },
         { "<leader>h", group = "[H]arpoon", icon="󱡀" },
-        { "<leader>x", group = "[X] Trouble" },
+        { "<leader>x", group = "[X] Trouble", icon="󰋔" },
     },
     gitsigns = {
         {
@@ -231,6 +231,7 @@ return {
                 end
             end,
             desc = "[P]recognition",
+            icon = "󰬯",
             mode = "n",
         },
     },

@@ -1,5 +1,5 @@
 return { -- Mini is so varied it's hard to categorise. So i dumped my mini installs here
-    { -- Collection of various small independent plugins/modules
+    {    -- Collection of various small independent plugins/modules
         "echasnovski/mini.nvim",
         config = function()
             -- Better Around/Inside textobjects
@@ -25,6 +25,8 @@ return { -- Mini is so varied it's hard to categorise. So i dumped my mini insta
                 WARN = { duration = 4000 },
                 INFO = { duration = 3000 },
             })
+
+            require("mini.clue").setup() -- For per-project/dynamic plugin loading
 
             -- Some other mini.nvim plugins that look useful to me
             require("mini.clue").setup()

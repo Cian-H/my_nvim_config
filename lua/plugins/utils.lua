@@ -1,26 +1,29 @@
 return { -- General programming utilities go here
     -- Tools for configuration and plugin development
-    { "folke/neoconf.nvim",   cmd = "Neoconf" },
     {
-        "folke/neodev.nvim",
+        "klen/nvim-config-local",
+        lazy = false, -- Load immediately to ensure it catches the initial working directory
         opts = {
-            override = function(root_dir, library)
-                if
-                    root_dir:find(
-                        os.getenv("XDG_CONFIG_HOME")
-                        .. "/nix/home-manager/core/dotfiles/dot_config/nvim/",
-                        1,
-                        true
-                    ) == 1
-                then
-                    library.enabled = true
-                    library.plugins = true
-                end
-            end,
+            config_files = { ".nvim.lua", ".nvimrc", ".exrc" },
+            hashfile = vim.fn.stdpath("data") .. "/config-local",
+            autocommands_create = true,
+            commands_create = true,
+            silent = false,
+            lookup_parents = false,
+        },
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                "~/.config/nvim/",
+                "~/.config/nix/home-manager/core/dotfiles/dot_config/nvim/",
+            },
         },
     },
     -- Privilege escalation plugin
-    { "lambdalisue/suda.vim", event = "VeryLazy" },
+    { "lambdalisue/suda.vim",     event = "VeryLazy" },
     {
         "folke/trouble.nvim",
         cmd = { "Trouble" },

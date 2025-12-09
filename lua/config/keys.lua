@@ -12,6 +12,11 @@ return {
         { "<leader>h", group = "[H]arpoon", icon="󱡀" },
         { "<leader>x", group = "[X] Trouble", icon="󰋔" },
     },
+    commands = {
+        { "<leader>f", group = "[F]ormat", icon="󰗈" },
+        { "<leader>p", group = "[P]recognition", icon="󰬯" },
+        { "<leader>?", group = "[?] Cheatsheet", icon="󰧹" },
+    },
     gitsigns = {
         {
             "<leader>gs",
@@ -231,7 +236,6 @@ return {
                 end
             end,
             desc = "[P]recognition",
-            icon = "󰬯",
             mode = "n",
         },
     },

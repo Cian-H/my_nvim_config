@@ -10,11 +10,13 @@ return { -- UI components and other visual elements are declared here
     { "MunifTanjim/nui.nvim", lazy = true },
     { -- Useful plugin to show you pending keybinds.
         "folke/which-key.nvim",
-        event = "VimEnter",
+        event = "VeryLazy",
         config = function()
             local wk = require("which-key")
             local groups = require("config.keys").groups
+            local commands = require("config.keys").commands
             wk.add(groups)
+            wk.add(commands)
         end,
     },
     {

@@ -12,17 +12,38 @@ return { -- Non programming quality of life utilities go here
             "nvim-telescope/telescope.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
-        opts = {
-            workspaces = {
-                {
+        opts = function()
+            local target_path = vim.fn.expand("~/Documents/Work_Notes/")
+            local workspaces = {}
+
+            if vim.fn.isdirectory(target_path) == 1 then
+                table.insert(workspaces, {
                     name = "work",
-                    path = "~/Documents/Work_Notes/",
+                    path = target_path,
+                })
+            end
+
+            if #workspaces == 0 then
+                local fallback_path = vim.fn.stdpath("data") .. "/obsidian_fallback"
+                if vim.fn.isdirectory(fallback_path) == 0 then
+                    vim.fn.mkdir(fallback_path, "p")
+                end
+
+                table.insert(workspaces, {
+                    name = "fallback",
+                    path = fallback_path,
+                })
+
+                vim.notify("Obsidian: 'Work_Notes' not found. Using fallback path.", vim.log.levels.WARN)
+            end
+
+            return {
+                workspaces = workspaces,
+                completion = {
+                    min_chars = 2,
                 },
-            },
-            completion = {
-                min_chars = 2,
-            },
-        },
+            }
+        end,
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",

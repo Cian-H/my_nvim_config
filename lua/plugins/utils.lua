@@ -9,7 +9,7 @@ return { -- General programming utilities go here
             autocommands_create = true,
             commands_create = true,
             silent = false,
-            lookup_parents = false,
+            lookup_parents = true,
         },
     },
     {

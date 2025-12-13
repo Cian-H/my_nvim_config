@@ -129,27 +129,9 @@ return { -- UI components and other visual elements are declared here
     {
         "HiPhish/rainbow-delimiters.nvim",
         lazy = true,
-        keys = {
-            {
-                "<leader>(",
-                function()
-                    local module = require("rainbow-delimiters")
-                    local bufnr = vim.api.nvim_get_current_buf()
-                    local is_enabled = module.is_enabled(bufnr)
-
-                    if is_enabled then
-                        module.disable(bufnr)
-                        print("Rainbow Delimiters: OFF")
-                    else
-                        module.enable(bufnr)
-                        print("Rainbow Delimiters: ON")
-                    end
-                end,
-                desc = "Toggle Rainbow Delimiters"
-            },
-        },
+        keys = require("config.keys").rainbow_delimiters,
         config = function()
-            require("rainbow-delimiters.setup").setup()
+            require("rainbow-delimiters.setup").setup({})
         end,
     }
 }

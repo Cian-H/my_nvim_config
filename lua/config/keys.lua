@@ -1,21 +1,21 @@
 return {
     groups = {
-        { "<leader>s", group = "[S]earch", icon="" },
-        { "<leader>c", group = "[C]ode", icon="" },
-        { "<leader>d", group = "[D]iagnostics", icon="" },
-        { "<leader>g", group = "[G]enerate", icon="󰈏" },
-        { "<leader>r", group = "[R]ename", icon="󰑕" },
-        { "<leader>w", group = "[W]orkspace", icon="" },
-        { "<leader>t", group = "[T]ree", icon="󱏒" },
-        { "<leader>l", group = "[L]azyGit", icon="󰒲" },
-        { "<leader>o", group = "[O]verseer", icon="󰈈" },
-        { "<leader>h", group = "[H]arpoon", icon="󱡀" },
-        { "<leader>x", group = "[X] Trouble", icon="󰋔" },
+        { "<leader>s", group = "[S]earch", icon = "" },
+        { "<leader>c", group = "[C]ode", icon = "" },
+        { "<leader>d", group = "[D]iagnostics", icon = "" },
+        { "<leader>g", group = "[G]enerate", icon = "󰈏" },
+        { "<leader>r", group = "[R]ename", icon = "󰑕" },
+        { "<leader>w", group = "[W]orkspace", icon = "" },
+        { "<leader>t", group = "[T]ree", icon = "󱏒" },
+        { "<leader>l", group = "[L]azyGit", icon = "󰒲" },
+        { "<leader>o", group = "[O]verseer", icon = "󰈈" },
+        { "<leader>h", group = "[H]arpoon", icon = "󱡀" },
+        { "<leader>x", group = "[X] Trouble", icon = "󰋔" },
     },
     commands = {
-        { "<leader>f", group = "[F]ormat", icon="󰗈" },
-        { "<leader>p", group = "[P]recognition", icon="󰬯" },
-        { "<leader>?", group = "[?] Cheatsheet", icon="󰧹" },
+        { "<leader>f", group = "[F]ormat", icon = "󰗈" },
+        { "<leader>p", group = "[P]recognition", icon = "󰬯" },
+        { "<leader>?", group = "[?] Cheatsheet", icon = "󰧹" },
     },
     gitsigns = {
         {
@@ -420,6 +420,25 @@ return {
                 end
             end,
             desc = "Next Trouble/Quickfix Item",
+        },
+    },
+    {
+        {
+            "<leader>(",
+            function()
+                local module = require("rainbow-delimiters")
+                local bufnr = vim.api.nvim_get_current_buf()
+                local is_enabled = module.is_enabled(bufnr)
+
+                if is_enabled then
+                    module.disable(bufnr)
+                    print("Rainbow Delimiters: OFF")
+                else
+                    module.enable(bufnr)
+                    print("Rainbow Delimiters: ON")
+                end
+            end,
+            desc = "Toggle Rainbow Delimiters"
         },
     },
 }

@@ -426,16 +426,12 @@ return {
         {
             "<leader>(",
             function()
-                local module = require("rainbow-delimiters")
-                local bufnr = vim.api.nvim_get_current_buf()
-                local is_enabled = module.is_enabled(bufnr)
-
-                if is_enabled then
-                    module.disable(bufnr)
-                    print("Rainbow Delimiters: OFF")
-                else
-                    module.enable(bufnr)
+                local rm_module = require("rainbow-delimiters")
+                rm_module.toggle()
+                if rm_module.is_enabled() then
                     print("Rainbow Delimiters: ON")
+                else
+                    print("Rainbow Delimiters: OFF")
                 end
             end,
             desc = "Toggle Rainbow Delimiters"

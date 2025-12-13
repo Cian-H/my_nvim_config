@@ -13,7 +13,7 @@ return { -- UI components and other visual elements are declared here
         event = "VeryLazy",
         config = function()
             local wk = require("which-key")
-            wk.setup({preset = "modern"})
+            wk.setup({ preset = "modern" })
             local groups = require("config.keys").groups
             local commands = require("config.keys").commands
             wk.add(groups)
@@ -126,4 +126,30 @@ return { -- UI components and other visual elements are declared here
         "tris203/precognition.nvim",
         keys = require("config.keys").precognition,
     },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        lazy = true,
+        keys = {
+            {
+                "<leader>(",
+                function()
+                    local module = require("rainbow-delimiters")
+                    local bufnr = vim.api.nvim_get_current_buf()
+                    local is_enabled = module.is_enabled(bufnr)
+
+                    if is_enabled then
+                        module.disable(bufnr)
+                        print("Rainbow Delimiters: OFF")
+                    else
+                        module.enable(bufnr)
+                        print("Rainbow Delimiters: ON")
+                    end
+                end,
+                desc = "Toggle Rainbow Delimiters"
+            },
+        },
+        config = function()
+            require("rainbow-delimiters.setup").setup()
+        end,
+    }
 }

@@ -429,9 +429,9 @@ return {
                 local rm_module = require("rainbow-delimiters")
                 rm_module.toggle()
                 if rm_module.is_enabled() then
-                    print("Rainbow Delimiters: ON")
+                    vim.notify("Rainbow Delimiters: ON", vim.log.levels.INFO)
                 else
-                    print("Rainbow Delimiters: OFF")
+                    vim.notify("Rainbow Delimiters: OFF", vim.log.levels.INFO)
                 end
             end,
             desc = "Toggle Rainbow Delimiters"

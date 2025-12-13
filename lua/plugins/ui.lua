@@ -131,7 +131,7 @@ return { -- UI components and other visual elements are declared here
         lazy = true,
         keys = require("config.keys").rainbow_delimiters,
         config = function()
-            require("rainbow-delimiters.setup").setup({})
+            require("rainbow-delimiters.setup").setup()
         end,
     }
 }

@@ -26,13 +26,22 @@ return { -- Mini is so varied it's hard to categorise. So i dumped my mini insta
                 INFO = { duration = 3000 },
             })
 
-            require("mini.clue").setup() -- For per-project/dynamic plugin loading
+            require("mini.deps").setup() -- For per-project/dynamic plugin loading
+
+            require("mini.pairs").setup({ mappings = { ["`"] = false } })
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "rust",
+                callback = function()
+                    vim.b.minipairs_config = vim.tbl_deep_extend("force", require("mini.pairs").config, {
+                        mappings = { ["'"] = false },
+                    })
+                end,
+            })
 
             -- Some other mini.nvim plugins that look useful to me
             require("mini.clue").setup()
             require("mini.visits").setup()
             require("mini.sessions").setup()
-            require("mini.pairs").setup({ mappings = { ["`"] = false } })
             require("mini.comment").setup()
             require("mini.splitjoin").setup()
             require("mini.trailspace").setup()

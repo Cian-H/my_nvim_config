@@ -2,10 +2,10 @@
 vim.wo.number = true -- Line numbers
 vim.wo.relativenumber = true
 vim.opt.wrap = false
-vim.opt.mouse = "a" -- enable mouse mode for window resizing
+vim.opt.mouse = "a"               -- enable mouse mode for window resizing
 vim.opt.clipboard = "unnamedplus" -- share system and nvim clipboard
 vim.g.have_nerd_font = true
-vim.opt.undofile = true -- Save undo history
+vim.opt.undofile = true           -- Save undo history
 -- Add custom commentstring definitions
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "nix,flake",
@@ -24,19 +24,6 @@ vim.filetype.add({
         nu = "nu",
         mojo = "mojo",
     },
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        local bufnr = args.buf
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.server_capabilities.completionProvider then
-            vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-        end
-        if client.server_capabilities.definitionProvider then
-            vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-        end
-    end,
 })
 
 -- Case-insensitive searching UNLESS \C or capital in search
@@ -60,8 +47,8 @@ vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
-vim.opt.cursorline = true -- Show which line your cursor is on
-vim.opt.scrolloff = 4 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.cursorline = true    -- Show which line your cursor is on
+vim.opt.scrolloff = 4        -- Minimal number of screen lines to keep above and below the cursor.
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

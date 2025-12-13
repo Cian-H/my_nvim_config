@@ -422,7 +422,7 @@ return {
             desc = "Next Trouble/Quickfix Item",
         },
     },
-    {
+    rainbow_delimiters = {
         {
             "<leader>(",
             function()

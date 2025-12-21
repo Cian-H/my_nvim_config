@@ -6,6 +6,20 @@ vim.opt.mouse = "a"               -- enable mouse mode for window resizing
 vim.opt.clipboard = "unnamedplus" -- share system and nvim clipboard
 vim.g.have_nerd_font = true
 vim.opt.undofile = true           -- Save undo history
+-- Add shell-specific settings
+local shell_path = os.getenv("SHELL") or ""
+
+if (vim.fn.executable("nu") == 1) and shell_path:find("nu") then
+    vim.opt.sh = "nu"
+    vim.opt.shelltemp = false
+    vim.opt.shellredir = "out+err> %s"
+    vim.opt.shellcmdflag = "--stdin --no-newline -c"
+    vim.opt.shellxescape = ""
+    vim.opt.shellxquote = ""
+    vim.opt.shellquote = ""
+    vim.opt.shellpipe =
+    "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
+end
 -- Add custom commentstring definitions
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "nix,flake",

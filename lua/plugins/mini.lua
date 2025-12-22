@@ -38,6 +38,12 @@ return { -- Mini is so varied it's hard to categorise. So i dumped my mini insta
             require("mini.trailspace").setup()
 
             -- My custom mini.starter config
+            ---@class StarterItem
+            ---@field name string
+            ---@field action string|function
+            ---@field section string
+
+            ---@type StarterItem[]
             local starter_items = {
                 {
                     action = "Telescope file_browser",

@@ -1,3 +1,10 @@
+---@class IconDef
+---@field icon string
+---@field color string
+---@field cterm_color string
+---@field name string
+
+---@type table<string, IconDef>
 return {
     Ada = {
         icon = "",

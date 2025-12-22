@@ -1,3 +1,4 @@
+---@type Keymap[]
 local keys = require("config.keys").globals
 
 for _, map in ipairs(keys) do

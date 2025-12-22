@@ -1,3 +1,13 @@
+---@class Keymap
+---@field [1] string LHS key
+---@field [2] string|function RHS command or function
+---@field desc string Description for which-key/vim.keymap
+---@field mode? string|string[] Mode (n, v, i, etc.)
+---@field expr? boolean Whether to use expression mapping
+
+---@class KeyConfig : table<string, Keymap>
+
+---@type KeyConfig
 return {
     groups = {
         { "<leader>s", group = "[S]earch", icon = "" },
@@ -310,6 +320,7 @@ return {
             mode = "n",
         },
     },
+    ---@param telescope_builtin table
     telescope = function(telescope_builtin)
         return {
             {

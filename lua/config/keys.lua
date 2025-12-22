@@ -308,20 +308,6 @@ return {
         { "<leader>or", vim.cmd.OverseerRun, desc = "[O]verseer [R]un", mode = "n" },
         { "<leader>ot", vim.cmd.OverseerToggle, desc = "[O]verseer [T]oggle", mode = "n" },
     },
-    precognition = {
-        {
-            "<leader>p",
-            function()
-                if require("precognition").toggle() then
-                    vim.notify("Precognition ON")
-                else
-                    vim.notify("Precognition OFF")
-                end
-            end,
-            desc = "[P]recognition",
-            mode = "n",
-        },
-    },
     ---@param telescope_builtin table
     telescope = function(telescope_builtin)
         return {

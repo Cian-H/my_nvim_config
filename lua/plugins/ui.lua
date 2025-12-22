@@ -101,7 +101,6 @@ return { -- UI components and other visual elements are declared here
                     },
                 },
                 extensions = {
-                    "fugitive",
                     "fzf",
                     "lazy",
                     "mason",
@@ -121,11 +120,6 @@ return { -- UI components and other visual elements are declared here
                 branch = "harpoon2",
             },
         },
-    },
-    -- Assistant for refreshers on vim motions
-    {
-        "tris203/precognition.nvim",
-        keys = require("config.keys").precognition,
     },
     {
         "HiPhish/rainbow-delimiters.nvim",

@@ -1,0 +1,5 @@
+std = "vim"
+exclude = [".devenv/*"]
+
+[lints]
+mixed_table = "allow"

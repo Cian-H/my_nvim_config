@@ -23,7 +23,7 @@ return { -- General programming utilities go here
         },
     },
     -- Privilege escalation plugin
-    { "lambdalisue/suda.vim",     event = "VeryLazy" },
+    { "lambdalisue/suda.vim", event = "VeryLazy" },
     {
         "folke/trouble.nvim",
         cmd = { "Trouble" },

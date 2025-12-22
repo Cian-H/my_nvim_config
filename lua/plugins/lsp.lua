@@ -15,7 +15,7 @@ return {
                     for _, map in ipairs(lsp_keys) do
                         vim.keymap.set("n", map[1], map[2], {
                             buffer = event.buf,
-                            desc = "LSP: " .. map.desc
+                            desc = "LSP: " .. map.desc,
                         })
                     end
 
@@ -55,6 +55,6 @@ return {
             })
         end,
     },
-    { "fladson/vim-kitty",        ft = "kitty" },
+    { "fladson/vim-kitty", ft = "kitty" },
     { "scallop-lang/vim-scallop", ft = "scallop" },
 }

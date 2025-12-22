@@ -1,5 +1,5 @@
 return { -- Mini is so varied it's hard to categorise. So i dumped my mini installs here
-    {    -- Collection of various small independent plugins/modules
+    { -- Collection of various small independent plugins/modules
         "echasnovski/mini.nvim",
         config = function()
             -- Better Around/Inside textobjects

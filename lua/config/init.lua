@@ -2,10 +2,10 @@
 vim.wo.number = true -- Line numbers
 vim.wo.relativenumber = true
 vim.opt.wrap = false
-vim.opt.mouse = "a"               -- enable mouse mode for window resizing
+vim.opt.mouse = "a" -- enable mouse mode for window resizing
 vim.opt.clipboard = "unnamedplus" -- share system and nvim clipboard
 vim.g.have_nerd_font = true
-vim.opt.undofile = true           -- Save undo history
+vim.opt.undofile = true -- Save undo history
 -- Add shell-specific settings
 local shell_path = os.getenv("SHELL") or ""
 
@@ -18,7 +18,7 @@ if (vim.fn.executable("nu") == 1) and shell_path:find("nu") then
     vim.opt.shellxquote = ""
     vim.opt.shellquote = ""
     vim.opt.shellpipe =
-    "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
+        "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
 end
 -- Add custom commentstring definitions
 vim.api.nvim_create_autocmd("FileType", {
@@ -61,8 +61,8 @@ vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
-vim.opt.cursorline = true    -- Show which line your cursor is on
-vim.opt.scrolloff = 4        -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.cursorline = true -- Show which line your cursor is on
+vim.opt.scrolloff = 4 -- Minimal number of screen lines to keep above and below the cursor.
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 

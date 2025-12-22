@@ -79,21 +79,21 @@ return {
     },
     globals = {
         -- Window Navigation
-        { "<A-h>",      "<C-w>h",                  desc = "Window Left" },
-        { "<A-j>",      "<C-w>j",                  desc = "Window Down" },
-        { "<A-k>",      "<C-w>k",                  desc = "Window Up" },
-        { "<A-l>",      "<C-w>l",                  desc = "Window Right" },
+        { "<A-h>", "<C-w>h", desc = "Window Left" },
+        { "<A-j>", "<C-w>j", desc = "Window Down" },
+        { "<A-k>", "<C-w>k", desc = "Window Up" },
+        { "<A-l>", "<C-w>l", desc = "Window Right" },
         -- Window Resizing
-        { "<A-=>",      "<C-w>+",                  desc = "Resize Increase Height" },
-        { "<A-->",      "<C-w>-",                  desc = "Resize Decrease Height" },
-        { "<A-.>",      "<C-w>>",                  desc = "Resize Increase Width" },
-        { "<A-,>",      "<C-w><",                  desc = "Resize Decrease Width" },
+        { "<A-=>", "<C-w>+", desc = "Resize Increase Height" },
+        { "<A-->", "<C-w>-", desc = "Resize Decrease Height" },
+        { "<A-.>", "<C-w>>", desc = "Resize Increase Width" },
+        { "<A-,>", "<C-w><", desc = "Resize Decrease Width" },
         -- Splits
-        { "<A-n>",      "<C-w>s",                  desc = "Split Window Horizontal" },
-        { "<A-;>",      "<C-w>x",                  desc = "Swap Window" },
-        { "<A-q>",      ":q<CR>",                  desc = "Close Window" },
+        { "<A-n>", "<C-w>s", desc = "Split Window Horizontal" },
+        { "<A-;>", "<C-w>x", desc = "Swap Window" },
+        { "<A-q>", ":q<CR>", desc = "Close Window" },
         -- Misc
-        { "<Esc>",      "<cmd>nohlsearch<CR>",     desc = "Clear Highlight" },
+        { "<Esc>", "<cmd>nohlsearch<CR>", desc = "Clear Highlight" },
         { "<leader>dd", vim.diagnostic.open_float, desc = "Show [D]iagnostics" },
     },
     harpoon = {
@@ -174,45 +174,59 @@ return {
         },
     },
     lsp = {
-        { "K",  vim.lsp.buf.hover,       desc = "[K] Hover Documentation" },
+        { "K", vim.lsp.buf.hover, desc = "[K] Hover Documentation" },
         {
             "gd",
-            function() require("telescope.builtin").lsp_definitions() end,
-            desc = "[G]oto [D]efinition"
+            function()
+                require("telescope.builtin").lsp_definitions()
+            end,
+            desc = "[G]oto [D]efinition",
         },
         { "ge", vim.lsp.buf.declaration, desc = "[G]oto D[e]claration" },
         {
             "gi",
-            function() require("telescope.builtin").lsp_implementations() end,
-            desc = "[G]oto [I]mplementation"
+            function()
+                require("telescope.builtin").lsp_implementations()
+            end,
+            desc = "[G]oto [I]mplementation",
         },
         {
             "gr",
-            function() require("telescope.builtin").lsp_references() end,
-            desc = "[G]oto [R]eferences"
+            function()
+                require("telescope.builtin").lsp_references()
+            end,
+            desc = "[G]oto [R]eferences",
         },
         {
             "gt",
-            function() require("telescope.builtin").lsp_type_definitions() end,
-            desc = "[G]oto [T]ype"
+            function()
+                require("telescope.builtin").lsp_type_definitions()
+            end,
+            desc = "[G]oto [T]ype",
         },
         {
             "<leader>ss",
-            function() require("telescope.builtin").lsp_document_symbols() end,
-            desc = "[S]earch [S]ymbols"
+            function()
+                require("telescope.builtin").lsp_document_symbols()
+            end,
+            desc = "[S]earch [S]ymbols",
         },
         {
             "<leader>ws",
-            function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end,
-            desc = "[W]orkspace [S]ymbols"
+            function()
+                require("telescope.builtin").lsp_dynamic_workspace_symbols()
+            end,
+            desc = "[W]orkspace [S]ymbols",
         },
-        { "<leader>r",  vim.lsp.buf.rename,      desc = "[R]ename" },
+        { "<leader>r", vim.lsp.buf.rename, desc = "[R]ename" },
         { "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
-        { "<leader>f",  vim.lsp.buf.format,      desc = "[F]ormat" },
+        { "<leader>f", vim.lsp.buf.format, desc = "[F]ormat" },
         {
             "<leader>ci",
-            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-            desc = "[I]nlay Hints"
+            function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            end,
+            desc = "[I]nlay Hints",
         },
     },
     neogen = {
@@ -277,10 +291,10 @@ return {
         { "<leader>te", vim.cmd.Oil, desc = "[T]ree [E]dit", mode = "n" },
     },
     overseer = {
-        { "<leader>ob", vim.cmd.OverseerBuild,  desc = "[O]verseer [B]uild",       mode = "n" },
+        { "<leader>ob", vim.cmd.OverseerBuild, desc = "[O]verseer [B]uild", mode = "n" },
         { "<leader>oc", vim.cmd.OverseerRunCmd, desc = "[O]verseer Run [C]ommand", mode = "n" },
-        { "<leader>or", vim.cmd.OverseerRun,    desc = "[O]verseer [R]un",         mode = "n" },
-        { "<leader>ot", vim.cmd.OverseerToggle, desc = "[O]verseer [T]oggle",      mode = "n" },
+        { "<leader>or", vim.cmd.OverseerRun, desc = "[O]verseer [R]un", mode = "n" },
+        { "<leader>ot", vim.cmd.OverseerToggle, desc = "[O]verseer [T]oggle", mode = "n" },
     },
     precognition = {
         {
@@ -424,7 +438,7 @@ return {
             "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
             desc = "Todo/Fix/Fixme",
         },
-        { "<leader>st", "<cmd>TodoTelescope<cr>",       desc = "Todo" },
+        { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
         {
             "<leader>sT",
             "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
@@ -438,14 +452,14 @@ return {
             "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
             desc = "Buffer Diagnostics",
         },
-        { "<leader>cs", "<cmd>Trouble symbols toggle<cr>",     desc = "Symbols" },
+        { "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols" },
         {
             "<leader>cS",
             "<cmd>Trouble lsp toggle<cr>",
             desc = "LSP references/definitions/... (Trouble)",
         },
         { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List" },
-        { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",  desc = "Quickfix List" },
+        { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List" },
         {
             "[q",
             function()
@@ -491,7 +505,7 @@ return {
                     vim.notify("Rainbow Delimiters: OFF", vim.log.levels.INFO)
                 end
             end,
-            desc = "Toggle Rainbow Delimiters"
+            desc = "Toggle Rainbow Delimiters",
         },
     },
     undotree = {

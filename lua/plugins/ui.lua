@@ -1,5 +1,5 @@
 return { -- UI components and other visual elements are declared here
-    {    -- Theme
+    { -- Theme
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
@@ -133,5 +133,5 @@ return { -- UI components and other visual elements are declared here
         config = function()
             require("rainbow-delimiters.setup").setup()
         end,
-    }
+    },
 }

@@ -34,7 +34,10 @@ return { -- Non programming quality of life utilities go here
                     path = fallback_path,
                 })
 
-                vim.notify("Obsidian: 'Work_Notes' not found. Using fallback path.", vim.log.levels.WARN)
+                vim.notify(
+                    "Obsidian: 'Work_Notes' not found. Using fallback path.",
+                    vim.log.levels.WARN
+                )
             end
 
             return {

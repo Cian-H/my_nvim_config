@@ -157,5 +157,5 @@ return { -- General programming utilities go here
         },
     },
     -- Rust tools like inlay hints are absolutely essential
-    { "simrat39/rust-tools.nvim", ft = "rust" },
+    { "mrcjkb/rustaceanvim", version = "^6", lazy = false },
 }

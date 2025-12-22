@@ -7,7 +7,8 @@
   "workspace.library": [
     "$VIMRUNTIME/lua",
     "$VIMRUNTIME/lua/vim/lsp",
-    "~/.local/share/nvim/lazy"
+    "~/.local/share/nvim/lazy",
+    "${3rd}/luassert/library"
   ],
   "workspace.checkThirdParty": "Apply"
 }

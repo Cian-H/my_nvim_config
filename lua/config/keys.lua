@@ -66,6 +66,7 @@ return {
                 if vim.wo.diff then
                     vim.cmd.normal({ "]c", bang = true })
                 else
+                    ---@diagnostic disable-next-line: param-type-mismatch
                     require("gitsigns").nav_hunk("next")
                 end
             end,
@@ -79,6 +80,7 @@ return {
                 if vim.wo.diff then
                     vim.cmd.normal({ "[c", bang = true })
                 else
+                    ---@diagnostic disable-next-line: param-type-mismatch
                     require("gitsigns").nav_hunk("prev")
                 end
             end,
@@ -509,8 +511,8 @@ return {
             "<leader>(",
             function()
                 local rm_module = require("rainbow-delimiters")
-                rm_module.toggle()
-                if rm_module.is_enabled() then
+                rm_module.toggle(0)
+                if rm_module.is_enabled(0) then
                     vim.notify("Rainbow Delimiters: ON", vim.log.levels.INFO)
                 else
                     vim.notify("Rainbow Delimiters: OFF", vim.log.levels.INFO)

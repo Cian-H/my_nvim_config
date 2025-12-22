@@ -1,0 +1,13 @@
+{
+  "diagnostics.globals": ["vim"],
+  "diagnostics.severity": {
+    "undefined-global": "Error",
+    "codestyle-check": "Warning"
+  },
+  "workspace.library": [
+    "$VIMRUNTIME/lua",
+    "$VIMRUNTIME/lua/vim/lsp",
+    "~/.local/share/nvim/lazy"
+  ],
+  "workspace.checkThirdParty": "Apply"
+}

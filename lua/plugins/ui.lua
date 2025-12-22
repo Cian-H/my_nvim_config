@@ -7,6 +7,15 @@ return { -- UI components and other visual elements are declared here
             vim.cmd.colorscheme("tokyonight-night")
         end,
     },
+    { -- A cheatsheet will always be useful until im a bit more familiar with vim
+        "sudormrfbin/cheatsheet.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/popup.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+    },
     { "MunifTanjim/nui.nvim", lazy = true },
     { -- Useful plugin to show you pending keybinds.
         "folke/which-key.nvim",

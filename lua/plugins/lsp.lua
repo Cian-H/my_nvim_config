@@ -56,6 +56,4 @@ return {
             })
         end,
     },
-    { "fladson/vim-kitty", ft = "kitty" },
-    { "scallop-lang/vim-scallop", ft = "scallop" },
 }

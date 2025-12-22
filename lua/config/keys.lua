@@ -45,7 +45,7 @@ return {
         {
             "<leader>gb",
             function()
-                package.loaded.gitsigns.blame_line()
+                require("gitsigns").blame_line()
             end,
             desc = "[G]it [B]lame Line",
             mode = "n",
@@ -54,12 +54,10 @@ return {
             "]c",
             function()
                 if vim.wo.diff then
-                    return "]c"
+                    vim.cmd.normal({ "]c", bang = true })
+                else
+                    require("gitsigns").nav_hunk("next")
                 end
-                vim.schedule(function()
-                    require("gitsigns").next_hunk()
-                end)
-                return "<Ignore>"
             end,
             desc = "Next Hunk",
             mode = "n",
@@ -69,12 +67,10 @@ return {
             "[c",
             function()
                 if vim.wo.diff then
-                    return "[c"
+                    vim.cmd.normal({ "[c", bang = true })
+                else
+                    require("gitsigns").nav_hunk("prev")
                 end
-                vim.schedule(function()
-                    require("gitsigns").prev_hunk()
-                end)
-                return "<Ignore>"
             end,
             desc = "Previous Hunk",
             mode = "n",

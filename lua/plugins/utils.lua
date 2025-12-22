@@ -58,6 +58,7 @@ return { -- General programming utilities go here
                 },
             })
         end,
+        keys = require("config.keys").gitsigns,
     },
     { -- Oil is a very nice buffer-based filetree editor
         "stevearc/oil.nvim",

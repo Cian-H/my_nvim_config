@@ -81,6 +81,25 @@ return {
             expr = true,
         },
     },
+    globals = {
+        -- Window Navigation
+        { "<A-h>",     "<C-w>h",                  desc = "Window Left" },
+        { "<A-j>",     "<C-w>j",                  desc = "Window Down" },
+        { "<A-k>",     "<C-w>k",                  desc = "Window Up" },
+        { "<A-l>",     "<C-w>l",                  desc = "Window Right" },
+        -- Window Resizing
+        { "<A-=>",     "<C-w>+",                  desc = "Resize Increase Height" },
+        { "<A-->",     "<C-w>-",                  desc = "Resize Decrease Height" },
+        { "<A-.>",     "<C-w>>",                  desc = "Resize Increase Width" },
+        { "<A-,>",     "<C-w><",                  desc = "Resize Decrease Width" },
+        -- Splits
+        { "<A-n>",     "<C-w>s",                  desc = "Split Window Horizontal" },
+        { "<A-;>",     "<C-w>x",                  desc = "Swap Window" },
+        { "<A-q>",     ":q<CR>",                  desc = "Close Window" },
+        -- Misc
+        { "<Esc>",     "<cmd>nohlsearch<CR>",     desc = "Clear Highlight" },
+        { "<leader>d", vim.diagnostic.open_float, desc = "[D]iagnostics" },
+    },
     harpoon = {
         {
             "<leader>ha",
@@ -156,6 +175,48 @@ return {
             end,
             desc = "[L]azyGit [F]ile Log",
             mode = "n",
+        },
+    },
+    lsp = {
+        {
+            "gd",
+            function() require("telescope.builtin").lsp_definitions() end,
+            desc = "[G]oto [D]efinition"
+        },
+        {
+            "gr",
+            function() require("telescope.builtin").lsp_references() end,
+            desc = "[G]oto [R]eferences"
+        },
+        {
+            "gI",
+            function() require("telescope.builtin").lsp_implementations() end,
+            desc = "[G]oto [I]mplementation"
+        },
+        {
+            "<leader>D",
+            function() require("telescope.builtin").lsp_type_definitions() end,
+            desc = "Type [D]efinition"
+        },
+        {
+            "<leader>ds",
+            function() require("telescope.builtin").lsp_document_symbols() end,
+            desc = "Document [S]ymbols"
+        },
+        {
+            "<leader>ws",
+            function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end,
+            desc = "[W]orkspace [S]ymbols"
+        },
+        { "<leader>rn", vim.lsp.buf.rename,      desc = "[R]e[n]ame" },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
+        { "K",          vim.lsp.buf.hover,       desc = "Hover Documentation" },
+        { "gD",         vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
+        { "<leader>f",  vim.lsp.buf.format,      desc = "[F]ormat" },
+        {
+            "<leader>ci",
+            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+            desc = "[I]nlay Hints"
         },
     },
     neogen = {
@@ -436,5 +497,8 @@ return {
             end,
             desc = "Toggle Rainbow Delimiters"
         },
+    },
+    undotree = {
+        { "U", vim.cmd.UndotreeToggle, desc = "[U]ndotree" },
     },
 }

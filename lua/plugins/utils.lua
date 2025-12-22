@@ -134,10 +134,7 @@ return { -- General programming utilities go here
     { -- Undo tree
         "mbbill/undotree",
         event = "VeryLazy",
-        opts = {},
-        config = function()
-            vim.keymap.set("n", "U", vim.cmd.UndotreeToggle, { desc = "[U]ndotree" })
-        end,
+        keys = require("config.keys").undotree,
     },
     { -- Add Overseer as a task running tool
         "stevearc/overseer.nvim",

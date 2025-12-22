@@ -25,6 +25,11 @@ return {
         end,
         keys = require("config.keys").harpoon,
     },
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+    },
     { -- Definitely need to add a plugin for quickly making notes in obsidian
         "epwalsh/obsidian.nvim",
         version = "*",

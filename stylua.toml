@@ -1,1 +1,10 @@
-/nix/store/pvbf0ydg2kz73i29c0w0w1ldyrxn34ix-home-manager-files/.config/stylua.toml
+column_width = 100
+line_endings = "Unix"
+indent_type = "Spaces"
+indent_width = 4
+quote_style = "AutoPreferDouble"
+call_parentheses = "Always"
+collapse_simple_statement = "Never"
+
+[sort_requires]
+enabled = true

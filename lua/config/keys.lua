@@ -3,7 +3,7 @@ return {
         { "<leader>s", group = "[S]earch", icon = "" },
         { "<leader>c", group = "[C]ode", icon = "" },
         { "<leader>d", group = "[D]iagnostics", icon = "" },
-        { "<leader>g", group = "[G]enerate", icon = "󰈏" },
+        { "<leader>g", group = "[G]it", icon = "󰊢" },
         { "<leader>r", group = "[R]ename", icon = "󰑕" },
         { "<leader>w", group = "[W]orkspace", icon = "" },
         { "<leader>t", group = "[T]ree", icon = "󱏒" },
@@ -83,22 +83,22 @@ return {
     },
     globals = {
         -- Window Navigation
-        { "<A-h>",     "<C-w>h",                  desc = "Window Left" },
-        { "<A-j>",     "<C-w>j",                  desc = "Window Down" },
-        { "<A-k>",     "<C-w>k",                  desc = "Window Up" },
-        { "<A-l>",     "<C-w>l",                  desc = "Window Right" },
+        { "<A-h>",      "<C-w>h",                  desc = "Window Left" },
+        { "<A-j>",      "<C-w>j",                  desc = "Window Down" },
+        { "<A-k>",      "<C-w>k",                  desc = "Window Up" },
+        { "<A-l>",      "<C-w>l",                  desc = "Window Right" },
         -- Window Resizing
-        { "<A-=>",     "<C-w>+",                  desc = "Resize Increase Height" },
-        { "<A-->",     "<C-w>-",                  desc = "Resize Decrease Height" },
-        { "<A-.>",     "<C-w>>",                  desc = "Resize Increase Width" },
-        { "<A-,>",     "<C-w><",                  desc = "Resize Decrease Width" },
+        { "<A-=>",      "<C-w>+",                  desc = "Resize Increase Height" },
+        { "<A-->",      "<C-w>-",                  desc = "Resize Decrease Height" },
+        { "<A-.>",      "<C-w>>",                  desc = "Resize Increase Width" },
+        { "<A-,>",      "<C-w><",                  desc = "Resize Decrease Width" },
         -- Splits
-        { "<A-n>",     "<C-w>s",                  desc = "Split Window Horizontal" },
-        { "<A-;>",     "<C-w>x",                  desc = "Swap Window" },
-        { "<A-q>",     ":q<CR>",                  desc = "Close Window" },
+        { "<A-n>",      "<C-w>s",                  desc = "Split Window Horizontal" },
+        { "<A-;>",      "<C-w>x",                  desc = "Swap Window" },
+        { "<A-q>",      ":q<CR>",                  desc = "Close Window" },
         -- Misc
-        { "<Esc>",     "<cmd>nohlsearch<CR>",     desc = "Clear Highlight" },
-        { "<leader>d", vim.diagnostic.open_float, desc = "[D]iagnostics" },
+        { "<Esc>",      "<cmd>nohlsearch<CR>",     desc = "Clear Highlight" },
+        { "<leader>dd", vim.diagnostic.open_float, desc = "Show [D]iagnostics" },
     },
     harpoon = {
         {
@@ -178,10 +178,17 @@ return {
         },
     },
     lsp = {
+        { "K",  vim.lsp.buf.hover,       desc = "[K] Hover Documentation" },
         {
             "gd",
             function() require("telescope.builtin").lsp_definitions() end,
             desc = "[G]oto [D]efinition"
+        },
+        { "ge", vim.lsp.buf.declaration, desc = "[G]oto D[e]claration" },
+        {
+            "gi",
+            function() require("telescope.builtin").lsp_implementations() end,
+            desc = "[G]oto [I]mplementation"
         },
         {
             "gr",
@@ -189,29 +196,22 @@ return {
             desc = "[G]oto [R]eferences"
         },
         {
-            "gI",
-            function() require("telescope.builtin").lsp_implementations() end,
-            desc = "[G]oto [I]mplementation"
-        },
-        {
-            "<leader>D",
+            "gt",
             function() require("telescope.builtin").lsp_type_definitions() end,
-            desc = "Type [D]efinition"
+            desc = "[G]oto [T]ype"
         },
         {
-            "<leader>ds",
+            "<leader>ss",
             function() require("telescope.builtin").lsp_document_symbols() end,
-            desc = "Document [S]ymbols"
+            desc = "[S]earch [S]ymbols"
         },
         {
             "<leader>ws",
             function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end,
             desc = "[W]orkspace [S]ymbols"
         },
-        { "<leader>rn", vim.lsp.buf.rename,      desc = "[R]e[n]ame" },
+        { "<leader>r",  vim.lsp.buf.rename,      desc = "[R]ename" },
         { "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
-        { "K",          vim.lsp.buf.hover,       desc = "Hover Documentation" },
-        { "gD",         vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
         { "<leader>f",  vim.lsp.buf.format,      desc = "[F]ormat" },
         {
             "<leader>ci",
@@ -221,9 +221,9 @@ return {
     },
     neogen = {
         {
-            "<Leader>gd",
+            "<leader>cd",
             ":lua require('neogen').generate()<CR>",
-            desc = "[G]enerate [D]ocumentation",
+            desc = "[C]ode Add [D]ocumentation",
             mode = "n",
         },
     },
@@ -365,7 +365,7 @@ return {
             {
                 "<leader><leader>",
                 telescope_builtin.buffers,
-                desc = "[ ] Find existing buffers",
+                desc = "[󰜞] Find existing buffers",
                 mode = "n",
             },
             -- Slightly advanced example of overriding default behavior and theme

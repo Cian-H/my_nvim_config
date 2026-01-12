@@ -37,6 +37,9 @@ vim.filetype.add({
         pro = "prolog",
         nu = "nu",
         mojo = "mojo",
+        pig = "pig",
+        hive = "hive",
+        hql = "hive",
     },
 })
 

@@ -1,5 +1,5 @@
 return {
-    require("lspconfig").nushell.setup({
+    require("neovim/nvim-lspconfig").nushell.setup({
         cmd = {
             "nu",
             "--config",

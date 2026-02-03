@@ -20,6 +20,22 @@ if (vim.fn.executable("nu") == 1) and shell_path:find("nu") then
     vim.opt.shellpipe =
         "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
 end
+-- Check if we're inside a git repo, and if we are make the project root the CWD
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        local current_file = vim.fn.expand("%:p")
+        if current_file == "" then
+            return
+        end
+        local root_dir = vim.fs.dirname(
+            vim.fs.find({ ".git" }, { upward = true, path = vim.fs.dirname(current_file) })[1]
+        )
+        if root_dir then
+            vim.cmd.cd(root_dir)
+            print("Root changed to: " .. root_dir)
+        end
+    end,
+})
 -- Add custom commentstring definitions
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "nix,flake",

@@ -47,7 +47,13 @@ return {
         { "<leader>dd", vim.diagnostic.open_float, desc = "Show [D]iagnostics" },
     },
     atone = {
-        { "U", vim.api.nvim_command("Atone toggle"), desc = "[U]ndotree" },
+        {
+            "U",
+            function()
+                require("atone.core").toggle()
+            end,
+            desc = "[U]ndotree",
+        },
     },
     gitsigns = {
         {
@@ -166,19 +172,25 @@ return {
     lazygit = {
         {
             "<leader>lg",
-            Snacks.lazygit,
+            function()
+                Snacks.lazygit()
+            end,
             desc = "[L]azy[G]it",
             mode = "n",
         },
         {
             "<leader>ll",
-            Snacks.lazygit.log,
+            function()
+                Snacks.lazygit.log()
+            end,
             desc = "[L]azyGit [L]og",
             mode = "n",
         },
         {
             "<leader>lf",
-            Snacks.lazygit.log_file,
+            function()
+                Snacks.lazygit.log_file()
+            end,
             desc = "[L]azyGit [F]ile Log",
             mode = "n",
         },

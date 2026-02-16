@@ -108,6 +108,12 @@ return {
     { -- Undo tree
         "mbbill/undotree",
         event = "VeryLazy",
-        keys = require("config.keys").undotree,
+    },
+    {
+        "XXiaoA/atone.nvim",
+        event = "VeryLazy",
+        cmd = "Atone",
+        keys = require("config.keys").atone,
+        opts = {},
     },
 }

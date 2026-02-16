@@ -27,6 +27,28 @@ return {
         { "<leader>p", group = "[P]recognition", icon = "󰬯" },
         { "<leader>?", group = "[?] Cheatsheet", icon = "󰧹" },
     },
+    globals = {
+        -- Window Navigation
+        { "<A-h>", "<C-w>h", desc = "Window Left" },
+        { "<A-j>", "<C-w>j", desc = "Window Down" },
+        { "<A-k>", "<C-w>k", desc = "Window Up" },
+        { "<A-l>", "<C-w>l", desc = "Window Right" },
+        -- Window Resizing
+        { "<A-=>", "<C-w>+", desc = "Resize Increase Height" },
+        { "<A-->", "<C-w>-", desc = "Resize Decrease Height" },
+        { "<A-.>", "<C-w>>", desc = "Resize Increase Width" },
+        { "<A-,>", "<C-w><", desc = "Resize Decrease Width" },
+        -- Splits
+        { "<A-n>", "<C-w>s", desc = "Split Window Horizontal" },
+        { "<A-;>", "<C-w>x", desc = "Swap Window" },
+        { "<A-q>", ":q<CR>", desc = "Close Window" },
+        -- Misc
+        { "<Esc>", "<cmd>nohlsearch<CR>", desc = "Clear Highlight" },
+        { "<leader>dd", vim.diagnostic.open_float, desc = "Show [D]iagnostics" },
+    },
+    atone = {
+        { "U", vim.api.nvim_command("Atone toggle"), desc = "[U]ndotree" },
+    },
     gitsigns = {
         {
             "<leader>gs",
@@ -89,25 +111,7 @@ return {
             expr = true,
         },
     },
-    globals = {
-        -- Window Navigation
-        { "<A-h>", "<C-w>h", desc = "Window Left" },
-        { "<A-j>", "<C-w>j", desc = "Window Down" },
-        { "<A-k>", "<C-w>k", desc = "Window Up" },
-        { "<A-l>", "<C-w>l", desc = "Window Right" },
-        -- Window Resizing
-        { "<A-=>", "<C-w>+", desc = "Resize Increase Height" },
-        { "<A-->", "<C-w>-", desc = "Resize Decrease Height" },
-        { "<A-.>", "<C-w>>", desc = "Resize Increase Width" },
-        { "<A-,>", "<C-w><", desc = "Resize Decrease Width" },
-        -- Splits
-        { "<A-n>", "<C-w>s", desc = "Split Window Horizontal" },
-        { "<A-;>", "<C-w>x", desc = "Swap Window" },
-        { "<A-q>", ":q<CR>", desc = "Close Window" },
-        -- Misc
-        { "<Esc>", "<cmd>nohlsearch<CR>", desc = "Clear Highlight" },
-        { "<leader>dd", vim.diagnostic.open_float, desc = "Show [D]iagnostics" },
-    },
+
     harpoon = {
         {
             "<leader>ha",
@@ -162,25 +166,19 @@ return {
     lazygit = {
         {
             "<leader>lg",
-            function()
-                vim.api.nvim_command("lua Snacks.lazygit()")
-            end,
+            Snacks.lazygit,
             desc = "[L]azy[G]it",
             mode = "n",
         },
         {
             "<leader>ll",
-            function()
-                vim.api.nvim_command("lua Snacks.lazygit.log()")
-            end,
+            Snacks.lazygit.log,
             desc = "[L]azyGit [L]og",
             mode = "n",
         },
         {
             "<leader>lf",
-            function()
-                vim.api.nvim_command("lua Snacks.lazygit.log_file()")
-            end,
+            Snacks.lazygit.log_file,
             desc = "[L]azyGit [F]ile Log",
             mode = "n",
         },
@@ -506,8 +504,5 @@ return {
             end,
             desc = "Toggle Rainbow Delimiters",
         },
-    },
-    undotree = {
-        { "U", vim.cmd.UndotreeToggle, desc = "[U]ndotree" },
     },
 }

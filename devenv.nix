@@ -8,6 +8,7 @@
   packages = [
     pkgs.git
     pkgs.lua-language-server
+    pkgs.pre-commit
     pkgs.selene
     pkgs.stylua
   ];

@@ -71,6 +71,7 @@ return {
     },
     { -- Highlight, edit, and navigate code
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
         build = ":TSUpdate",
         opts = {
             ensure_installed = { "bash", "c", "html", "lua", "markdown", "nu", "vim", "vimdoc" },

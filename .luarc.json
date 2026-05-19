@@ -8,7 +8,8 @@
     "$VIMRUNTIME/lua",
     "$VIMRUNTIME/lua/vim/lsp",
     "~/.local/share/nvim/lazy",
-    "${3rd}/luassert/library"
+    "${3rd}/luassert/library",
+        "${3rd}/luv/library"
   ],
   "workspace.checkThirdParty": "Apply"
 }

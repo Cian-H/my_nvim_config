@@ -79,9 +79,18 @@ return {
             highlight = { enable = true },
             indent = { enable = true },
         },
-        config = function(_, opts)
-            ---@diagnostic disable-next-line: missing-fields
-            require("nvim-treesitter.configs").setup(opts)
+        config = function()
+            local treesitter = require("nvim-treesitter")
+            treesitter.setup()
+            treesitter.install = { "bash", "c", "html", "lua", "markdown", "nu", "vim", "vimdoc" }
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "bash", "c", "html", "lua", "markdown", "nu", "vim", "vimdoc" },
+                callback = function()
+                    vim.treesitter.start()
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
         end,
     },
 }

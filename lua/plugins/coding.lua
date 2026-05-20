@@ -119,21 +119,29 @@ return {
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "*",
                 callback = function(args)
-                    local filetype = vim.bo[args.buf].filetype
-
-                    if filetype == "" or vim.bo[args.buf].buftype ~= "" then
+                    local ft = vim.bo[args.buf].filetype
+                    if ft == "" or vim.bo[args.buf].buftype ~= "" then
                         return
                     end
 
-                    local lang = vim.treesitter.language.get_lang(filetype) or filetype
-                    local has_parser = vim.treesitter.language.add(lang)
+                    local lang = vim.treesitter.language.get_lang(ft) or ft
 
-                    if has_parser then
-                        local success = pcall(vim.treesitter.start, args.buf, lang)
-                        if success then
-                            vim.bo[args.buf].indentexpr =
-                                "v:lua.require'nvim-treesitter'.indentexpr()"
-                        end
+                    if not vim.treesitter.language.add(lang) then
+                        vim.notify(
+                            "Installing Treesitter parser for: " .. lang,
+                            vim.log.levels.INFO
+                        )
+                        require("nvim-treesitter.install").install(lang, true):wait(function()
+                            vim.schedule(function()
+                                pcall(vim.treesitter.start, args.buf, lang)
+                            end)
+                        end)
+                        return
+                    end
+
+                    local success = pcall(vim.treesitter.start, args.buf, lang)
+                    if success then
+                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                     end
                 end,
             })

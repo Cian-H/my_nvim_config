@@ -36,4 +36,10 @@ return {
         cterm_color = "225",
         name = "Scallop",
     },
+    Quarto = {
+        icon = "󰐙",
+        color = "#75aadb",
+        cterm_color = "110",
+        name = "Quarto",
+    },
 }

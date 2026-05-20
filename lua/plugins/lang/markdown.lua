@@ -4,7 +4,7 @@ return {
         opts = {},
         ft = "markdown",
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
+            "romus204/tree-sitter-manager.nvim",
             "echasnovski/mini.nvim",
             "nvim-tree/nvim-web-devicons",
         },

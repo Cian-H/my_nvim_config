@@ -45,7 +45,7 @@ return {
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter",
+            "romus204/tree-sitter-manager.nvim",
         },
     },
     { -- Tools for configuration and plugin development
@@ -69,81 +69,31 @@ return {
         end,
         keys = require("config.keys").overseer,
     },
-    { -- Highlight, edit, and navigate code
-        "nvim-treesitter/nvim-treesitter",
-        branch = "main",
-        build = ":TSUpdate",
-        opts = {
-            ensure_installed = {
-                "bash",
-                "c",
-                "elixir",
-                "html",
-                "lua",
-                "markdown",
-                "nix",
-                "nu",
-                "python",
-                "quarto",
-                "rust",
-                "scheme",
-                "typst",
-                "vim",
-                "vimdoc",
-            },
-            auto_install = true,
-            highlight = { enable = true },
-            indent = { enable = true },
-        },
+    {
+        "romus204/tree-sitter-manager.nvim",
+        dependencies = {},
         config = function()
-            local treesitter = require("nvim-treesitter")
-            treesitter.setup()
-            treesitter.install = {
-                "bash",
-                "c",
-                "elixir",
-                "html",
-                "lua",
-                "markdown",
-                "nix",
-                "nu",
-                "python",
-                "quarto",
-                "rust",
-                "scheme",
-                "typst",
-                "vim",
-                "vimdoc",
-            }
-
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "*",
-                callback = function(args)
-                    local ft = vim.bo[args.buf].filetype
-                    if ft == "" or vim.bo[args.buf].buftype ~= "" then
-                        return
-                    end
-
-                    local lang = vim.treesitter.language.get_lang(ft) or ft
-
-                    if not vim.treesitter.language.add(lang) then
-                        vim.notify(
-                            "Installing Treesitter parser for: " .. lang,
-                            vim.log.levels.INFO
-                        )
-                        require("nvim-treesitter.install").install(lang, true):wait(function()
-                            vim.schedule(function()
-                                pcall(vim.treesitter.start, args.buf, lang)
-                            end)
-                        end)
-                        return
-                    end
-
-                    local success = pcall(vim.treesitter.start, args.buf, lang)
-                    if success then
-                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                    end
-                end,
+            require("tree-sitter-manager").setup({
+                ensure_installed = {
+                    "bash",
+                    "c",
+                    "elixir",
+                    "html",
+                    "lua",
+                    "markdown",
+                    "nix",
+                    "nu",
+                    "python",
+                    "quarto",
+                    "rust",
+                    "scheme",
+                    "typst",
+                    "vim",
+                    "vimdoc",
+                },
+                border = nil,
+                auto_install = false,
+                highlight = true,
             })
         end,
     },

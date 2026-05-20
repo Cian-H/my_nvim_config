@@ -41,7 +41,7 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
-            "nvim-treesitter/nvim-treesitter",
+            "romus204/tree-sitter-manager.nvim",
         },
         opts = function()
             local target_path = vim.fn.expand("~/Documents/Work_Notes/")

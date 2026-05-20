@@ -3,7 +3,7 @@ return {
         "quarto-dev/quarto-nvim",
         dependencies = {
             "jmbuhr/otter.nvim",
-            "nvim-treesitter/nvim-treesitter",
+            "romus204/tree-sitter-manager.nvim",
         },
     },
 }

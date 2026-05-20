@@ -85,10 +85,13 @@ return {
             treesitter.install = { "bash", "c", "html", "lua", "markdown", "nu", "vim", "vimdoc" }
 
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "bash", "c", "html", "lua", "markdown", "nu", "vim", "vimdoc" },
-                callback = function()
-                    vim.treesitter.start()
-                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                pattern = "*",
+                callback = function(args)
+                    local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+                    if lang then
+                        vim.treesitter.start(args.buf, lang)
+                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
                 end,
             })
         end,

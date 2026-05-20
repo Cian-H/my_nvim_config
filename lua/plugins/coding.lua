@@ -84,7 +84,6 @@ return {
                     "nix",
                     "nu",
                     "python",
-                    "quarto",
                     "rust",
                     "scheme",
                     "typst",

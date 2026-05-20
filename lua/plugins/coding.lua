@@ -120,11 +120,16 @@ return {
                 pattern = "*",
                 callback = function(args)
                     local filetype = vim.bo[args.buf].filetype
-                    local lang = vim.treesitter.language.get_lang(filetype)
 
-                    if lang then
+                    if filetype == "" or vim.bo[args.buf].buftype ~= "" then
+                        return
+                    end
+
+                    local lang = vim.treesitter.language.get_lang(filetype) or filetype
+                    local has_parser = vim.treesitter.language.add(lang)
+
+                    if has_parser then
                         local success = pcall(vim.treesitter.start, args.buf, lang)
-
                         if success then
                             vim.bo[args.buf].indentexpr =
                                 "v:lua.require'nvim-treesitter'.indentexpr()"

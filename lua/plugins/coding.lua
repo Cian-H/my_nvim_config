@@ -74,7 +74,23 @@ return {
         branch = "main",
         build = ":TSUpdate",
         opts = {
-            ensure_installed = { "bash", "c", "html", "lua", "markdown", "nu", "vim", "vimdoc" },
+            ensure_installed = {
+                "bash",
+                "c",
+                "elixir",
+                "html",
+                "lua",
+                "markdown",
+                "nix",
+                "nu",
+                "python",
+                "quarto",
+                "rust",
+                "scheme",
+                "typst",
+                "vim",
+                "vimdoc",
+            },
             auto_install = true,
             highlight = { enable = true },
             indent = { enable = true },
@@ -82,7 +98,23 @@ return {
         config = function()
             local treesitter = require("nvim-treesitter")
             treesitter.setup()
-            treesitter.install = { "bash", "c", "html", "lua", "markdown", "nu", "vim", "vimdoc" }
+            treesitter.install = {
+                "bash",
+                "c",
+                "elixir",
+                "html",
+                "lua",
+                "markdown",
+                "nix",
+                "nu",
+                "python",
+                "quarto",
+                "rust",
+                "scheme",
+                "typst",
+                "vim",
+                "vimdoc",
+            }
 
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "*",

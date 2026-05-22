@@ -94,6 +94,17 @@ return {
                 auto_install = false,
                 highlight = true,
             })
+            -- Automatically attach treesitter to buffers
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "*",
+                callback = function()
+                    local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+                    if lang and vim.treesitter.query.get(lang, "highlights") then
+                        pcall(vim.treesitter.start)
+                    end
+                end,
+                group = vim.api.nvim_create_augroup("ts_native_highlight", { clear = true }),
+            })
         end,
     },
 }

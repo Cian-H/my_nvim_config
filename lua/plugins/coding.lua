@@ -72,8 +72,11 @@ return {
     {
         "romus204/tree-sitter-manager.nvim",
         dependencies = {},
+        lazy = false,
         config = function()
-            require("tree-sitter-manager").setup({
+            local manager = require("tree-sitter-manager")
+
+            manager.setup({
                 ensure_installed = {
                     "bash",
                     "c",
@@ -91,20 +94,12 @@ return {
                     "vimdoc",
                 },
                 border = nil,
-                auto_install = false,
+                auto_install = true,
                 highlight = true,
             })
-            -- Automatically attach treesitter to buffers
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "*",
-                callback = function()
-                    local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
-                    if lang and vim.treesitter.query.get(lang, "highlights") then
-                        pcall(vim.treesitter.start)
-                    end
-                end,
-                group = vim.api.nvim_create_augroup("ts_native_highlight", { clear = true }),
-            })
+
+            local plugin_path = vim.fn.stdpath("data") .. "/lazy/tree-sitter-manager.nvim"
+            vim.opt.runtimepath:append(plugin_path)
         end,
     },
 }

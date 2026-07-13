@@ -42,6 +42,7 @@ return {
                     "ruff",
                     "pylsp",
                     "taplo",
+                    "nixd",
                 },
             })
 

@@ -506,13 +506,48 @@ return {
             function()
                 local rm_module = require("rainbow-delimiters")
                 rm_module.toggle(0)
-                if rm_module.is_enabled(0) then
-                    vim.notify("Rainbow Delimiters: ON", vim.log.levels.INFO)
+
+                local active = rm_module.is_enabled(0)
+                local buf = vim.api.nvim_get_current_buf()
+                local lisp_filetypes =
+                    { "clojure", "fennel", "scheme", "lisp", "janet", "racket", "hy", "elisp" }
+
+                if vim.tbl_contains(lisp_filetypes, vim.bo[buf].filetype) then
+                    local has_paredit, paredit_config = pcall(require, "nvim-paredit.config")
+                    if has_paredit then
+                        local keys = paredit_config.config.keys
+                        if active then
+                            local has_kb, keybindings =
+                                pcall(require, "nvim-paredit.utils.keybindings")
+                            if has_kb then
+                                keybindings.setup_keybindings({
+                                    keys = keys,
+                                    buf = buf,
+                                })
+                            end
+                        else
+                            for keymap, action in pairs(keys) do
+                                if action then
+                                    local mode = action.mode or { "n", "x" }
+                                    if type(mode) == "string" then
+                                        mode = { mode }
+                                    end
+                                    for _, m in ipairs(mode) do
+                                        pcall(vim.keymap.del, m, keymap, { buffer = buf })
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    vim.notify("Lisp Tooling: " .. (active and "ON" or "OFF"), vim.log.levels.INFO)
                 else
-                    vim.notify("Rainbow Delimiters: OFF", vim.log.levels.INFO)
+                    vim.notify(
+                        "Rainbow Delimiters: " .. (active and "ON" or "OFF"),
+                        vim.log.levels.INFO
+                    )
                 end
             end,
-            desc = "Toggle Rainbow Delimiters",
+            desc = "Toggle Lisp Tooling (Rainbow & Paredit)",
         },
     },
 }

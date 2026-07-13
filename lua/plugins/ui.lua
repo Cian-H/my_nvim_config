@@ -133,6 +133,7 @@ return { -- UI components and other visual elements are declared here
     {
         "HiPhish/rainbow-delimiters.nvim",
         lazy = true,
+        ft = { "clojure", "fennel", "scheme", "lisp", "janet", "racket", "hy", "elisp" },
         keys = require("config.keys").rainbow_delimiters,
         config = function()
             require("rainbow-delimiters.setup").setup({})

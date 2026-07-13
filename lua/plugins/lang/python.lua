@@ -8,6 +8,9 @@ return {
         },
         opts = {
             picker_integration = true,
+            keymaps = {
+                prefix = "<localleader>x",
+            },
         },
     },
     {

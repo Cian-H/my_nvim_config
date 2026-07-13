@@ -22,6 +22,8 @@ return {
         { "<leader>h", group = "[H]arpoon", icon = "󱡀" },
         { "<leader>x", group = "[X] Trouble", icon = "󰋔" },
         { "<leader>a", group = "[A]genda / [O]rg Mode", icon = "󰕪" },
+        { "<localleader>", group = "[L]ocal Leader (\\\\)", icon = "" },
+        { "<localleader>x", group = "Local [X] UV", icon = "" },
     },
     commands = {
         { "<leader>f", group = "[F]ormat", icon = "󰗈" },
@@ -228,18 +230,18 @@ return {
             desc = "[G]oto [T]ype",
         },
         {
-            "<leader>ss",
+            "<leader>cs",
             function()
                 require("telescope.builtin").lsp_document_symbols()
             end,
-            desc = "[S]earch [S]ymbols",
+            desc = "[C]ode [S]ymbols",
         },
         {
-            "<leader>ws",
+            "<leader>cw",
             function()
                 require("telescope.builtin").lsp_dynamic_workspace_symbols()
             end,
-            desc = "[W]orkspace [S]ymbols",
+            desc = "[C]ode [W]orkspace Symbols",
         },
         { "<leader>r", vim.lsp.buf.rename, desc = "[R]ename" },
         { "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
@@ -342,8 +344,8 @@ return {
             },
             {
                 "<leader>sb",
-                telescope_builtin.find_files,
-                desc = "[S]earch file [B]rowser",
+                telescope_builtin.buffers,
+                desc = "[S]earch [B]uffers",
                 mode = "n",
             },
             {
@@ -382,12 +384,7 @@ return {
                 desc = '[S]earch Recent Files ("." for repeat)',
                 mode = "n",
             },
-            {
-                "<leader><leader>",
-                telescope_builtin.buffers,
-                desc = "[󰜞] Find existing buffers",
-                mode = "n",
-            },
+
             -- Slightly advanced example of overriding default behavior and theme
             {
                 "<leader>/",
@@ -462,9 +459,9 @@ return {
             "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
             desc = "Buffer Diagnostics",
         },
-        { "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols" },
+        { "<leader>xs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols (Trouble)" },
         {
-            "<leader>cS",
+            "<leader>xS",
             "<cmd>Trouble lsp toggle<cr>",
             desc = "LSP references/definitions/... (Trouble)",
         },

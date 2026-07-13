@@ -1,6 +1,9 @@
 -- Enable experimental fast lua module loader
 vim.loader.enable()
 
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = "\\\\"
+
 require("config")
 require("keybindings")
 

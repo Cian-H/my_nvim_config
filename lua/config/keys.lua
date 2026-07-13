@@ -21,6 +21,7 @@ return {
         { "<leader>o", group = "[O]verseer", icon = "󰈈" },
         { "<leader>h", group = "[H]arpoon", icon = "󱡀" },
         { "<leader>x", group = "[X] Trouble", icon = "󰋔" },
+        { "<leader>a", group = "[A]genda / [O]rg Mode", icon = "󰕪" },
     },
     commands = {
         { "<leader>f", group = "[F]ormat", icon = "󰗈" },

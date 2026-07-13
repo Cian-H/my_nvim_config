@@ -17,8 +17,22 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 
+local hotpotpath = vim.fn.stdpath("data") .. "/lazy/hotpot.nvim"
+if not vim.loop.fs_stat(hotpotpath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/rktjmp/hotpot.nvim.git",
+        hotpotpath,
+    })
+end
+
 ---@diagnostic disable-next-line: undefined-field
+vim.opt.rtp:prepend(hotpotpath)
 vim.opt.rtp:prepend(lazypath)
+
+require("hotpot")
 
 require("lazy").setup("plugins")
 require("nvim-web-devicons").refresh() -- This fixes screwiness with the devicon colors

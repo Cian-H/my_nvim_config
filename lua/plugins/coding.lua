@@ -77,6 +77,13 @@ return {
             local manager = require("tree-sitter-manager")
 
             manager.setup({
+                languages = {
+                    org = {
+                        install_info = {
+                            url = "https://github.com/milisims/tree-sitter-org",
+                        },
+                    },
+                },
                 ensure_installed = {
                     "bash",
                     "c",

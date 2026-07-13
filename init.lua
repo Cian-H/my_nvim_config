@@ -31,9 +31,10 @@ if not vim.loop.fs_stat(hotpotpath) then
     })
 end
 
----@diagnostic disable-next-line: undefined-field
+---@diagnostic disable: undefined-field
 vim.opt.rtp:prepend(hotpotpath)
 vim.opt.rtp:prepend(lazypath)
+---@diagnostic enable: undefined-field
 
 require("hotpot")
 

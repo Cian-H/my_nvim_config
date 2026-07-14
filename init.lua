@@ -1,34 +1,25 @@
-vim.loader.enable() -- Enable experimental fast lua module loader
+-- Enable experimental fast lua module loader
+vim.loader.enable()
 
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\\\"
 
+require("config")
+
 local utils = require("config.utils")
 local lazypath = utils.ensure_plugin("lazy.nvim", "folke/lazy.nvim", "stable")
-local hotpotpath = utils.ensure_plugin("hotpot.nvim", "rktjmp/hotpot.nvim", "main")
+local hotpotpath = utils.ensure_plugin("hotpot.nvim", "rktjmp/hotpot.nvim")
 
 utils.clean_conflicting_parsers()
 
-vim.opt.rtp:prepend({ hotpotpath, lazypath }) ---@diagnostic disable-line: undefined-field
+---@diagnostic disable: undefined-field
+vim.opt.rtp:prepend(hotpotpath)
+vim.opt.rtp:prepend(lazypath)
+---@diagnostic enable: undefined-field
 
-require("hotpot").setup()
-
-require("config")
+require("hotpot")
 require("keybindings")
 require("config.autocmds")
 
-local hotpotcontext = assert(require("hotpot.api").context(vim.fn.stdpath("config")))
-
-require("lazy").setup({
-    spec = {
-        { import = "plugins" },
-        { "rktjmp/hotpot.nvim", version = "^2.0.0" },
-    },
-    performance = {
-        rtp = {
-            paths = { hotpotcontext.locate("destination") },
-        },
-    },
-})
-
+require("lazy").setup("plugins")
 require("nvim-web-devicons").refresh() -- This fixes screwiness with the devicon colors

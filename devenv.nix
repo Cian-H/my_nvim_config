@@ -61,6 +61,8 @@
   };
 
   languages.lua.enable = true;
+  languages.python.enable = true;
+
 
   git-hooks.hooks = {
     selene.enable = true;

@@ -1,3 +1,9 @@
+---@class Keymap
+---@field [1] string LHS key sequence
+---@field [2] string|function RHS command or callback
+---@field desc? string Description of the keymap
+---@field mode? string|string[] Mode for the keymap
+
 ---@type Keymap[]
 local keys = require("config.keys").globals
 

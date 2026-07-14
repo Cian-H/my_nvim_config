@@ -20,31 +20,7 @@ if (vim.fn.executable("nu") == 1) and shell_path:find("nu") then
     vim.opt.shellpipe =
         "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
 end
--- Check if we're inside a git repo, and if we are make the project root the CWD
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function()
-        local current_file = vim.fn.expand("%:p")
-        if current_file == "" then
-            return
-        end
-        local root_dir = vim.fs.dirname(
-            vim.fs.find({ ".git" }, { upward = true, path = vim.fs.dirname(current_file) })[1]
-        )
-        if root_dir then
-            vim.cmd.cd(root_dir)
-            print("Root changed to: " .. root_dir)
-        end
-    end,
-})
--- Add custom commentstring definitions
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "nix,flake",
-    command = "setlocal commentstring=#\\ %s",
-})
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "scallop",
-    command = "setlocal commentstring=//%s",
-})
+
 -- Add custom file types
 vim.filetype.add({
     extension = {
@@ -84,15 +60,6 @@ vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.scrolloff = 4 -- Minimal number of screen lines to keep above and below the cursor.
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-
--- Highlight when yanking (copying) text
-vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight when yanking (copying) text",
-    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-})
 
 -- Diagnostics config
 vim.diagnostic.config({

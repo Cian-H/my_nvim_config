@@ -5,7 +5,6 @@ vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\\\"
 
 require("config")
-require("keybindings")
 
 -- Then, i want to load lazy as my plugin manager and have it load my plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -37,6 +36,7 @@ vim.opt.rtp:prepend(lazypath)
 ---@diagnostic enable: undefined-field
 
 require("hotpot")
+require("keybindings")
 
 require("lazy").setup("plugins")
 require("nvim-web-devicons").refresh() -- This fixes screwiness with the devicon colors

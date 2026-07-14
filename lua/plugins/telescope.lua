@@ -69,6 +69,6 @@ return { -- Telescope is so core to nvim that it gets its own module
             pcall(require("telescope").load_extension, "file-browser")
         end,
         -- See `:help telescope.builtin`
-        keys = require("config.keys").telescope(require("telescope.builtin")),
+        keys = require("config.keys").telescope,
     },
 }

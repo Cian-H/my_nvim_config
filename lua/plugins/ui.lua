@@ -24,9 +24,7 @@ return { -- UI components and other visual elements are declared here
             local wk = require("which-key")
             wk.setup({ preset = "modern" })
             local groups = require("config.keys").groups
-            local commands = require("config.keys").commands
             wk.add(groups)
-            wk.add(commands)
         end,
     },
     {

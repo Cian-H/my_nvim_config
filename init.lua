@@ -1,6 +1,3 @@
--- Enable experimental fast lua module loader
-vim.loader.enable()
-
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\\\"
 
@@ -17,7 +14,35 @@ vim.opt.rtp:prepend(hotpotpath)
 vim.opt.rtp:prepend(lazypath)
 ---@diagnostic enable: undefined-field
 
+local original_secure_read = vim.secure.read
+vim.secure.read = function(path) ---@diagnostic disable-line: duplicate-set-field
+    if path:match("%.hotpot%.fnl$") then
+        -- Only auto-trust if it resides in the immutable Nix store or user config directory
+        if path:match("^/nix/store/") or path:match("^/home/cianh/%.config/nvim/") then
+            local file = io.open(path, "r")
+            if file then
+                local content = file:read("*a")
+                file:close()
+                return content
+            end
+        end
+    end
+    return original_secure_read(path)
+end
+
+local original_fs_find = vim.fs.find
+vim.fs.find = function(names, opts) ---@diagnostic disable-line: duplicate-set-field
+    if type(names) == "function" and opts and opts.type == "file" and opts.path then
+        opts.type = nil
+    end
+    return original_fs_find(names, opts)
+end
+
 require("hotpot")
+
+-- Enable experimental fast lua module loader
+vim.loader.enable()
+
 require("keybindings")
 require("config.autocmds")
 

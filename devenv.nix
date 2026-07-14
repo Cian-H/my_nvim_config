@@ -32,7 +32,7 @@
       PROFILE_DIR="$PWD/.devenv/test-profile"
       rm -rf "$PROFILE_DIR/nvim"
       mkdir -p "$PROFILE_DIR/nvim" "$PROFILE_DIR/data" "$PROFILE_DIR/state" "$PROFILE_DIR/cache"
-      find "$PWD" -maxdepth 1 ! -name ".git" ! -name ".devenv" ! -name ".direnv" ! -name "devenv.lock" ! -name "devenv.nix" ! -name "devenv.yaml" ! -name ".envrc" -exec cp -r {} "$PROFILE_DIR/nvim/" \;
+      find "$PWD" -mindepth 1 -maxdepth 1 ! -name ".git" ! -name ".devenv" ! -name ".direnv" ! -name "devenv.lock" ! -name "devenv.nix" ! -name "devenv.yaml" ! -name ".envrc" -exec cp -r {} "$PROFILE_DIR/nvim/" \;
 
       XDG_CONFIG_HOME="$PROFILE_DIR" \
       XDG_DATA_HOME="$PROFILE_DIR/data" \
@@ -47,7 +47,7 @@
       mkdir -p "$PROFILE_DIR/nvim" "$PROFILE_DIR/data" "$PROFILE_DIR/state" "$PROFILE_DIR/cache"
 
       # Copy config files and folders to local sandbox config path
-      find "$PWD" -maxdepth 1 ! -name ".git" ! -name ".devenv" ! -name ".direnv" ! -name "devenv.lock" ! -name "devenv.nix" ! -name "devenv.yaml" ! -name ".envrc" -exec cp -r {} "$PROFILE_DIR/nvim/" \;
+      find "$PWD" -mindepth 1 -maxdepth 1 ! -name ".git" ! -name ".devenv" ! -name ".direnv" ! -name "devenv.lock" ! -name "devenv.nix" ! -name "devenv.yaml" ! -name ".envrc" -exec cp -r {} "$PROFILE_DIR/nvim/" \;
 
       echo "Starting test-drive of Neovim configuration in isolated sandbox..."
       echo "Caches, plugins, and state will be saved to: $PROFILE_DIR"

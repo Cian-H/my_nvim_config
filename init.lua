@@ -1,3 +1,8 @@
+-- Enable experimental fast lua module loader
+if vim.loader then
+    vim.loader.enable()
+end
+
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\\\"
 
@@ -39,9 +44,13 @@ vim.fs.find = function(names, opts) ---@diagnostic disable-line: duplicate-set-f
 end
 
 require("hotpot")
-
--- Enable experimental fast lua module loader
-vim.loader.enable()
+pcall(function()
+    local ctx = require("hotpot.util").R.Context.new(vim.fn.stdpath("config"))
+    require("hotpot.util").R.Context.sync(ctx)
+end)
+if vim.loader then
+    vim.loader.reset()
+end
 
 require("keybindings")
 require("config.autocmds")

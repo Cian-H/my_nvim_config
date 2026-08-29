@@ -1,5 +1,5 @@
 return { -- Mini is so varied it's hard to categorise. So i dumped my mini installs here
-    { -- Collection of various small independent plugins/modules
+    {    -- Collection of various small independent plugins/modules
         "echasnovski/mini.nvim",
         config = function()
             -- Better Around/Inside textobjects
@@ -20,11 +20,34 @@ return { -- Mini is so varied it's hard to categorise. So i dumped my mini insta
             -- Setup of mini.notify
             local notify = require("mini.notify")
             notify.setup()
-            vim.notify = notify.make_notify({
+            local mini_notify = notify.make_notify({
                 ERROR = { duration = 5000 },
                 WARN = { duration = 4000 },
                 INFO = { duration = 3000 },
             })
+            vim.notify = function(msg, level, opts)
+                local msg_str = tostring(msg)
+
+                local mini_config = require("mini.notify").config
+                local max_width = math.floor(vim.o.columns * mini_config.window.max_width_share)
+                local max_lines = math.floor(vim.o.lines * 0.4)
+
+                local _, newlines = msg_str:gsub("\n", "")
+
+                local has_long_line = false
+                for line in msg_str:gmatch("[^\n]+") do
+                    if #line > max_width then
+                        has_long_line = true
+                        break
+                    end
+                end
+
+                if newlines > max_lines or has_long_line then
+                    vim.api.nvim_echo({ { msg_str } }, true, {})
+                else
+                    mini_notify(msg, level, opts)
+                end
+            end
 
             require("mini.deps").setup() -- For per-project/dynamic plugin loading
 

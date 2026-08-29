@@ -26,7 +26,12 @@ return { -- Mini is so varied it's hard to categorise. So i dumped my mini insta
                 INFO = { duration = 3000 },
             })
             vim.notify = function(msg, level, opts)
-                local msg_str = tostring(msg)
+                local msg_str
+                if type(msg) == "table" then
+                    msg_str = table.concat(msg, "\n")
+                else
+                    msg_str = tostring(msg)
+                end
 
                 local mini_config = require("mini.notify").config
                 local max_width = math.floor(vim.o.columns * mini_config.window.max_width_share)
@@ -43,7 +48,9 @@ return { -- Mini is so varied it's hard to categorise. So i dumped my mini insta
                 end
 
                 if newlines > max_lines or has_long_line then
-                    vim.api.nvim_echo({ { msg_str } }, true, {})
+                    vim.schedule(function()
+                        vim.api.nvim_echo({ { msg_str } }, true, {})
+                    end)
                 else
                     mini_notify(msg, level, opts)
                 end

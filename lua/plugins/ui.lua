@@ -7,15 +7,6 @@ return { -- UI components and other visual elements are declared here
             vim.cmd.colorscheme("tokyonight-night")
         end,
     },
-    { -- A cheatsheet will always be useful until im a bit more familiar with vim
-        "sudormrfbin/cheatsheet.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/popup.nvim",
-            "nvim-lua/plenary.nvim",
-        },
-    },
     { "MunifTanjim/nui.nvim", lazy = true },
     { -- Useful plugin to show you pending keybinds.
         "folke/which-key.nvim",
@@ -26,40 +17,6 @@ return { -- UI components and other visual elements are declared here
             local groups = require("config.keys").groups
             wk.add(groups)
         end,
-    },
-    {
-        "nvim-tree/nvim-web-devicons",
-        config = function()
-            local icons = require("config.icons")
-            require("nvim-web-devicons").setup({
-                color_icons = true,
-                override_by_extension = {
-                    ["scl"] = icons.Scallop,
-                    ["prolog"] = icons.Prolog,
-                    ["pro"] = icons.Prolog,
-                    ["lisp"] = icons.Lisp,
-                    ["lsp"] = icons.Lisp,
-                    ["asd"] = icons.Lisp,
-                    ["f"] = icons.Fortran,
-                    ["f77"] = icons.Fortran,
-                    ["f90"] = icons.Fortran,
-                    ["f18"] = icons.Fortran,
-                    ["adb"] = icons.Ada,
-                    ["ads"] = icons.Ada,
-                },
-            })
-        end,
-    },
-    { -- A file explorer, because i'm not used to the vim workflow yet
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        event = "VimEnter",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-        },
-        keys = require("config.keys").neotree,
     },
     {
         "s1n7ax/nvim-window-picker",
@@ -74,33 +31,14 @@ return { -- UI components and other visual elements are declared here
     -- Modular, configurable status bar
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            local hl_color = require("tokyonight").load({ style = "night" }).orange
-            vim.cmd.highlight({ "LualineHarpoonActive", "guifg=" .. hl_color })
-
             require("lualine").setup({
                 options = {
-                    component_separators = { left = "", right = "" },
-                    section_separators = { left = "", right = "" },
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
                 },
                 sections = {
-                    lualine_c = {
-                        {
-                            "harpoon2",
-                            icon = "󰛢",
-                            indicators = { "A", "S", "D", "F" },
-                            active_indicators = {
-                                "%#LualineHarpoonActive#A%*",
-                                "%#LualineHarpoonActive#S%*",
-                                "%#LualineHarpoonActive#D%*",
-                                "%#LualineHarpoonActive#F%*",
-                            },
-                            _separator = "∙",
-                            no_harpoon = "Harpoon not loaded",
-                        },
-                        "filename",
-                    },
+                    lualine_c = { "filename" },
                     lualine_x = {
                         "encoding",
                         "fileformat",
@@ -108,25 +46,14 @@ return { -- UI components and other visual elements are declared here
                     },
                 },
                 extensions = {
-                    "fzf",
                     "lazy",
                     "mason",
-                    "neo-tree",
                     "oil",
                     "overseer",
                     "quickfix",
                 },
             })
         end,
-    },
-    {
-        "letieu/harpoon-lualine",
-        dependencies = {
-            {
-                "ThePrimeagen/harpoon",
-                branch = "harpoon2",
-            },
-        },
     },
     {
         "HiPhish/rainbow-delimiters.nvim",

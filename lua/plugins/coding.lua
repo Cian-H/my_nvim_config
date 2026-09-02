@@ -26,7 +26,7 @@ return {
         config = function()
             require("neogen").setup({
                 enabled = true,
-                snippet_engine = "luasnip",
+                snippet_engine = "nvim",
                 languages = {
                     python = {
                         template = {
@@ -43,8 +43,6 @@ return {
         event = "VeryLazy",
         dependencies = {
             "nvim-neotest/nvim-nio",
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
             "romus204/tree-sitter-manager.nvim",
         },
     },

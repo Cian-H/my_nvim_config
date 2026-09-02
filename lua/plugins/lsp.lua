@@ -3,11 +3,11 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             "mason-org/mason.nvim",
-            "mason-org/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
             { "j-hui/fidget.nvim", opts = {} },
         },
         config = function()
+            -- Attach keybindings when an LSP client connects to a buffer.
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
                 ---@param event { buf: number, data: { client_id: number } }
@@ -35,20 +35,19 @@ return {
                 end,
             })
 
+            -- Mason manages installation of external LSP binaries.
             require("mason").setup()
-            require("mason-lspconfig").setup({
+            require("mason-tool-installer").setup({
                 ensure_installed = {
-                    "lua_ls",
+                    "lua-language-server",
                     "ruff",
-                    "pylsp",
+                    "python-lsp-server",
                     "taplo",
                 },
             })
 
-            if vim.fn.executable("nixd") == 1 then
-                vim.lsp.enable("nixd")
-            end
-
+            -- Configure servers using the native vim.lsp.config() API (0.11+).
+            -- nvim-lspconfig provides default root markers and settings we build on.
             vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
@@ -58,6 +57,16 @@ return {
                     },
                 },
             })
+
+            vim.lsp.config("ruff", {})
+            vim.lsp.config("pylsp", {})
+            vim.lsp.config("taplo", {})
+
+            -- Enable all configured servers. nixd is gated on availability.
+            vim.lsp.enable({ "lua_ls", "ruff", "pylsp", "taplo" })
+            if vim.fn.executable("nixd") == 1 then
+                vim.lsp.enable("nixd")
+            end
         end,
     },
 }

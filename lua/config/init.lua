@@ -71,8 +71,17 @@ vim.diagnostic.config({
         header = "",
         prefix = "",
     },
-    signs = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = "󰌵 ",
+        },
+    },
     underline = true,
     update_in_insert = true,
-    severity_sort = false,
+    severity_sort = true,
+    virtual_text = true,
+    -- virtual_lines = { only_current_line = true }, -- uncomment to try inline diagnostic lines
 })

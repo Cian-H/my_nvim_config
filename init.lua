@@ -1,7 +1,4 @@
--- Enable experimental fast lua module loader
-if vim.loader then
-    vim.loader.enable()
-end
+vim.loader.enable()
 
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\\\"
@@ -35,25 +32,14 @@ vim.secure.read = function(path) ---@diagnostic disable-line: duplicate-set-fiel
     return original_secure_read(path)
 end
 
-local original_fs_find = vim.fs.find
-vim.fs.find = function(names, opts) ---@diagnostic disable-line: duplicate-set-field
-    if type(names) == "function" and opts and opts.type == "file" and opts.path then
-        opts.type = nil
-    end
-    return original_fs_find(names, opts)
-end
-
 require("hotpot")
 pcall(function()
     local ctx = require("hotpot.util").R.Context.new(vim.fn.stdpath("config"))
     require("hotpot.util").R.Context.sync(ctx)
 end)
-if vim.loader then
-    vim.loader.reset()
-end
+vim.loader.reset()
 
 require("keybindings")
 require("config.autocmds")
 
 require("lazy").setup("plugins")
-require("nvim-web-devicons").refresh() -- This fixes screwiness with the devicon colors

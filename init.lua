@@ -33,13 +33,14 @@ vim.secure.read = function(path) ---@diagnostic disable-line: duplicate-set-fiel
 end
 
 require("hotpot").setup()
-pcall(function()
-    local ctx = require("hotpot.util").R.Context.new(vim.fn.stdpath("config"))
-    require("hotpot.util").R.Context.sync(ctx)
-end)
-vim.loader.reset()
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+    performance = {
+        rtp = {
+            paths = { hotpotpath },
+        },
+    },
+})
 
 require("keybindings")
 require("config.autocmds")

@@ -39,7 +39,7 @@ pcall(function()
 end)
 vim.loader.reset()
 
+require("lazy").setup("plugins")
+
 require("keybindings")
 require("config.autocmds")
-
-require("lazy").setup("plugins")

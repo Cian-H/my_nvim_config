@@ -2,6 +2,7 @@ return {
     {
         "rktjmp/hotpot.nvim",
         lazy = false,
+        priority = 1000,
     },
     {
         "Olical/conjure",

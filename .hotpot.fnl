@@ -1,2 +1,2 @@
 {:schema :hotpot/2
- :target :colocate}
+ :target :cache}

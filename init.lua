@@ -32,7 +32,7 @@ vim.secure.read = function(path) ---@diagnostic disable-line: duplicate-set-fiel
     return original_secure_read(path)
 end
 
-require("hotpot")
+require("hotpot").setup()
 pcall(function()
     local ctx = require("hotpot.util").R.Context.new(vim.fn.stdpath("config"))
     require("hotpot.util").R.Context.sync(ctx)

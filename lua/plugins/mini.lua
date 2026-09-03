@@ -83,30 +83,7 @@ return { -- Mini is so varied it's hard to categorise. So i dumped my mini insta
                 },
                 {
                     name = "Browser",
-                    action = function()
-                        local handle = io.popen("git remote show")
-                        if handle == nil then
-                            vim.notify("Failed to find remote", vim.log.levels.ERROR)
-                            return
-                        end
-                        local result = handle:read("*a")
-                        handle:close()
-                        local remote = vim.split(result, "\n")[1]
-                        handle = io.popen("git remote get-url " .. remote)
-                        if handle == nil then
-                            vim.notify("Failed to get url for " .. remote, vim.log.levels.ERROR)
-                            return
-                        end
-                        local url = handle:read("*a")
-                        handle:close()
-                        handle = io.popen("xdg-open " .. url)
-                        if handle == nil then
-                            vim.notify("Failed to open " .. url, vim.log.levels.ERROR)
-                            return
-                        end
-                        result = handle:read("*a")
-                        handle:close()
-                    end,
+                    action = "lua Snacks.gitbrowse()",
                     section = "Git",
                 },
             }

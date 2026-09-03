@@ -14,7 +14,12 @@ return {
             input = { enabled = true },
             scope = { enabled = true },
             words = { enabled = true },
+            gitbrowse = { enabled = true },
+            scratch = { enabled = true },
         },
-        keys = require("config.keys").lazygit,
+        keys = vim.list_extend(
+            vim.list_extend({}, require("config.keys").snacks or {}),
+            require("config.keys").lazygit or {}
+        ),
     },
 }

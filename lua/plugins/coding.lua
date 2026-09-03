@@ -9,6 +9,7 @@ return {
                 lsp_fallback = true,
             },
         },
+        keys = require("config.keys").conform,
     },
     {
         "folke/lazydev.nvim",
@@ -45,6 +46,7 @@ return {
             "nvim-neotest/nvim-nio",
             "romus204/tree-sitter-manager.nvim",
         },
+        keys = require("config.keys").neotest,
     },
     { -- Tools for configuration and plugin development
         "klen/nvim-config-local",
